@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">scrum-poker</string>
+
+    <string name="menu_standard">Standard</string>
+    <string name="menu_fibonacci">Fibonacci</string>
+    <string name="menu_hours">Hours</string>
+    <string name="menu_risk">Risk</string>
+    <string name="menu_online_collaboration">Online Collaboration</string>
 </resources>

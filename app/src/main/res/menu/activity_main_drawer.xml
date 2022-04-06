@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_standard"
+            android:title="@string/menu_standard" />
+        <item
+            android:id="@+id/nav_fibonacci"
+            android:title="@string/menu_fibonacci" />
+        <item
+            android:id="@+id/nav_hours"
+            android:title="@string/menu_hours" />
+
+        <item
+            android:id="@+id/nav_risk"
+            android:title="@string/menu_risk" />
+
+        <item
+            android:id="@+id/nav_online"
+            android:title="@string/menu_online_collaboration" />
+    </group>
+</menu>
