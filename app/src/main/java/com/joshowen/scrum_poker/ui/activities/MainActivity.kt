@@ -16,7 +16,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Variables
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
+    private val appBarConfiguration: AppBarConfiguration by lazy {
+        AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk), binding.drawerLayout)
+    }
 
     //endregion
 
@@ -40,14 +42,9 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Initialising-UI Features
     private fun initialiseDrawerLayout() {
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
-
+        binding.navView.setupWithNavController(navController)
     }
 
     //endregion
