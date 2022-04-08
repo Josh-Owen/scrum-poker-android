@@ -1,12 +1,15 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.databinding.ItemCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
+import com.joshowen.scrum_poker.types.enums.CardType
 
 class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallback())  {
 
@@ -39,9 +42,22 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallba
     class CardViewHolder(binding : ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
 
         private val tvCardContent = binding.tvCardValue
+        private val cvContainer = binding.cvContainer
+        private val ivCardIcon = binding.ivCardIcon
 
-        fun bind(data : CardData) {
-            tvCardContent.text = data.value
+        fun bind(card: CardData) {
+
+            tvCardContent.text = card.value
+
+            cvContainer.setCardBackgroundColor(ContextCompat.getColor(itemView.context, card.backgroundColourResourceId))
+
+            if(card.cardType == CardType.ICON) {
+                ivCardIcon.visibility = if(card.resourceId != null) View.VISIBLE else View.GONE
+                ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+                card.resourceId?.let {
+                    ivCardIcon.setImageResource(it)
+                }
+            }
         }
     }
 

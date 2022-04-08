@@ -1,35 +1,36 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
+import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseViewModel
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
+import com.joshowen.scrum_poker.types.enums.DeckType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
-import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 
 interface CardFragmentVMInput {
-    fun setCardType(cardType : CardType)
+    fun setCardType(deckType: DeckType)
 }
 
 interface CardFragmentVMOutput {
-    fun getCardData() : Observable<List<CardData>>
+    fun getCardData(): Observable<List<CardData>>
 }
 
 @HiltViewModel
-class CardFragmentVM @Inject constructor(): BaseViewModel(), CardFragmentVMInput, CardFragmentVMOutput{
-
+class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInput,
+    CardFragmentVMOutput {
 
 
     //region Variables
 
-    val inputs : CardFragmentVMInput = this
-    val outputs : CardFragmentVMOutput = this
+    val inputs: CardFragmentVMInput = this
+    val outputs: CardFragmentVMOutput = this
 
-    private val psCardType = BehaviorSubject.create<CardType>()
+    private val psCardType = BehaviorSubject.create<DeckType>()
 
-    private val obsCardInformation : Observable<List<CardData>>
+    private val obsCardInformation: Observable<List<CardData>>
 
 
     init {
@@ -37,66 +38,71 @@ class CardFragmentVM @Inject constructor(): BaseViewModel(), CardFragmentVMInput
             Observable.create { emitter ->
 
                 val output: List<CardData> = when (cardType) {
-                    CardType.STANDARD -> listOf(
-                        CardData(0, "0"),
-                        CardData(0, "1/2"),
-                        CardData(0, "1"),
-                        CardData(0, "2"),
-                        CardData(0, "3"),
-                        CardData(0, "5"),
-                        CardData(0, "8"),
-                        CardData(0, "13"),
-                        CardData(0, "20"),
-                        CardData(0, "40"),
-                        CardData(0, "100"),
-                        CardData(0, "∞"),
-                        CardData(0, "?"),
-                        CardData(0, "C"),
+                    DeckType.STANDARD -> listOf(
+                        CardData(CardType.TEXT, "0"),
+                        CardData(CardType.TEXT, "1/2"),
+                        CardData(CardType.TEXT, "1"),
+                        CardData(CardType.TEXT, "2"),
+                        CardData(CardType.TEXT, "3"),
+                        CardData(CardType.TEXT, "5"),
+                        CardData(CardType.TEXT, "8"),
+                        CardData(CardType.TEXT, "13"),
+                        CardData(CardType.TEXT, "20"),
+                        CardData(CardType.TEXT, "40"),
+                        CardData(CardType.TEXT, "100"),
+                        CardData(CardType.TEXT, "∞"),
+                        CardData(CardType.TEXT, "?"),
+                        CardData(
+                            cardType = CardType.ICON,
+                            backgroundColourResourceId = R.color.black,
+                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            cardContentResourceId = R.color.teal_200
+                        ),
                     )
-                    CardType.FIBONACCI -> listOf(
-                        CardData(0, "0"),
-                        CardData(0, "1"),
-                        CardData(0, "2"),
-                        CardData(0, "3"),
-                        CardData(0, "5"),
-                        CardData(0, "8"),
-                        CardData(0, "13"),
-                        CardData(0, "21"),
-                        CardData(0, "34"),
-                        CardData(0, "55"),
-                        CardData(0, "89"),
-                        CardData(0, "144"),
-                        CardData(0, "∞"),
-                        CardData(0, "?"),
-                        CardData(0, "C"),
+                    DeckType.FIBONACCI -> listOf(
+                        CardData(CardType.TEXT, "0"),
+                        CardData(CardType.TEXT, "1"),
+                        CardData(CardType.TEXT, "2"),
+                        CardData(CardType.TEXT, "3"),
+                        CardData(CardType.TEXT, "5"),
+                        CardData(CardType.TEXT, "8"),
+                        CardData(CardType.TEXT, "13"),
+                        CardData(CardType.TEXT, "21"),
+                        CardData(CardType.TEXT, "34"),
+                        CardData(CardType.TEXT, "55"),
+                        CardData(CardType.TEXT, "89"),
+                        CardData(CardType.TEXT, "144"),
+                        CardData(CardType.TEXT, "∞"),
+                        CardData(CardType.TEXT, "?"),
+                        CardData(CardType.TEXT, "C"),
                     )
-                    CardType.HOURS -> listOf(
-                        CardData(0, "0"),
-                        CardData(0, "1"),
-                        CardData(0, "2"),
-                        CardData(0, "3"),
-                        CardData(0, "4"),
-                        CardData(0, "6"),
-                        CardData(0, "8"),
-                        CardData(0, "12"),
-                        CardData(0, "16"),
-                        CardData(0, "24"),
-                        CardData(0, "32"),
-                        CardData(0, "40"),
-                        CardData(0, "∞"),
-                        CardData(0, "?"),
-                        CardData(0, "C"),
+                    DeckType.HOURS -> listOf(
+                        CardData(CardType.TEXT, "0"),
+                        CardData(CardType.TEXT, "1"),
+                        CardData(CardType.TEXT, "2"),
+                        CardData(CardType.TEXT, "3"),
+                        CardData(CardType.TEXT, "4"),
+                        CardData(CardType.TEXT, "6"),
+                        CardData(CardType.TEXT, "8"),
+                        CardData(CardType.TEXT, "12"),
+                        CardData(CardType.TEXT, "16"),
+                        CardData(CardType.TEXT, "24"),
+                        CardData(CardType.TEXT, "32"),
+                        CardData(CardType.TEXT, "40"),
+                        CardData(CardType.TEXT, "∞"),
+                        CardData(CardType.TEXT, "?"),
+                        CardData(CardType.TEXT, "C"),
                     )
-                    CardType.RISK -> listOf(
-                        CardData(0, "G"),
-                        CardData(0, "B"),
-                        CardData(0, "O"),
-                        CardData(0, "P"),
-                        CardData(0, "R"),
-                        CardData(0, "∞"),
-                        CardData(0, "?"),
-                        CardData(0, "C"),
-                        ) // Todo: Need to add colours / images and such in here for the view types
+                    DeckType.RISK -> listOf(
+                        CardData(CardType.TEXT, "G"),
+                        CardData(CardType.TEXT, "B"),
+                        CardData(CardType.TEXT, "O"),
+                        CardData(CardType.TEXT, "P"),
+                        CardData(CardType.TEXT, "R"),
+                        CardData(CardType.TEXT, "∞"),
+                        CardData(CardType.TEXT, "?"),
+                        CardData(CardType.TEXT, "C"),
+                    ) // Todo: Need to add colours / images and such in here for the view types
                     else -> listOf()
                 }
                 emitter.onNext(output)
@@ -107,8 +113,8 @@ class CardFragmentVM @Inject constructor(): BaseViewModel(), CardFragmentVMInput
     //endregion
 
     //region Inputs
-    override fun setCardType(cardType: CardType) {
-        psCardType.onNext(cardType)
+    override fun setCardType(deckType: DeckType) {
+        psCardType.onNext(deckType)
     }
     //endregion
 

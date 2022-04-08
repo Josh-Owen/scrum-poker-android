@@ -10,8 +10,8 @@
         android:label="@string/menu_standard"
         tools:layout="@layout/fragment_card" >
         <argument
-            android:name="cardType"
-            app:argType="com.joshowen.scrum_poker.types.enums.CardType"
+            android:name="deckType"
+            app:argType="com.joshowen.scrum_poker.types.enums.DeckType"
             android:defaultValue="STANDARD" />
     </fragment>
 
@@ -21,8 +21,8 @@
         android:label="@string/menu_fibonacci"
         tools:layout="@layout/fragment_card" >
         <argument
-            android:name="cardType"
-            app:argType="com.joshowen.scrum_poker.types.enums.CardType"
+            android:name="deckType"
+            app:argType="com.joshowen.scrum_poker.types.enums.DeckType"
             android:defaultValue="FIBONACCI" />
     </fragment>
 
@@ -32,8 +32,8 @@
         android:label="@string/menu_hours"
         tools:layout="@layout/fragment_card" >
         <argument
-            android:name="cardType"
-            app:argType="com.joshowen.scrum_poker.types.enums.CardType"
+            android:name="deckType"
+            app:argType="com.joshowen.scrum_poker.types.enums.DeckType"
             android:defaultValue="HOURS" />
     </fragment>
 
@@ -44,8 +44,8 @@
         android:label="@string/menu_risk"
         tools:layout="@layout/fragment_card" >
         <argument
-            android:name="cardType"
-            app:argType="com.joshowen.scrum_poker.types.enums.CardType"
+            android:name="deckType"
+            app:argType="com.joshowen.scrum_poker.types.enums.DeckType"
             android:defaultValue="RISK" />
     </fragment>
 
