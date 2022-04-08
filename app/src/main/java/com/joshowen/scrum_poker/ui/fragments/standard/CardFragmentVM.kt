@@ -80,7 +80,12 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "144"),
                         CardData(CardType.TEXT, "∞"),
                         CardData(CardType.TEXT, "?"),
-                        CardData(CardType.TEXT, "C"),
+                        CardData(
+                            cardType = CardType.ICON,
+                            backgroundColourResourceId = R.color.black,
+                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            cardContentResourceId = R.color.teal_200
+                        ),
                     )
                     DeckType.HOURS -> listOf(
                         CardData(CardType.TEXT, "0"),
@@ -97,7 +102,12 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "40"),
                         CardData(CardType.TEXT, "∞"),
                         CardData(CardType.TEXT, "?"),
-                        CardData(CardType.TEXT, "C"),
+                        CardData(
+                            cardType = CardType.ICON,
+                            backgroundColourResourceId = R.color.black,
+                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            cardContentResourceId = R.color.teal_200
+                        ),
                     )
                     DeckType.RISK -> listOf(
                         CardData(CardType.TEXT, "G"),
@@ -107,8 +117,13 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "R"),
                         CardData(CardType.TEXT, "∞"),
                         CardData(CardType.TEXT, "?"),
-                        CardData(CardType.TEXT, "C"),
-                    ) // Todo: Need to add colours / images and such in here for the view types
+                        CardData(
+                            cardType = CardType.ICON,
+                            backgroundColourResourceId = R.color.black,
+                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            cardContentResourceId = R.color.teal_200
+                        ),
+                    )
                     else -> listOf()
                 }
                 emitter.onNext(output)
