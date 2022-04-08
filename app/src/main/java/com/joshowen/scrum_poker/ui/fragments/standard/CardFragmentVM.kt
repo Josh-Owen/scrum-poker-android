@@ -39,9 +39,15 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
 
                 val output: List<CardData> = when (cardType) {
                     DeckType.STANDARD -> listOf(
-                        CardData(CardType.TEXT, "0"),
+                        CardData(
+                            CardType.TEXT, "0",
+                            backgroundColourResourceId = R.color.black
+                        ),
                         CardData(CardType.TEXT, "1/2"),
-                        CardData(CardType.TEXT, "1"),
+                        CardData(
+                            CardType.TEXT, "1",
+                            cardContentResourceId = R.color.teal_200
+                        ),
                         CardData(CardType.TEXT, "2"),
                         CardData(CardType.TEXT, "3"),
                         CardData(CardType.TEXT, "5"),

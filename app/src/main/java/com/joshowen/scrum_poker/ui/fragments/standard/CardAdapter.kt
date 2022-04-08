@@ -14,7 +14,6 @@ import com.joshowen.scrum_poker.types.enums.CardType
 class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallback())  {
 
     //region Recycler View Overrides
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
         val view : ItemCardBinding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CardViewHolder(view)
@@ -47,8 +46,6 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallba
 
         fun bind(card: CardData) {
 
-            tvCardContent.text = card.value
-
             cvContainer.setCardBackgroundColor(ContextCompat.getColor(itemView.context, card.backgroundColourResourceId))
 
             if(card.cardType == CardType.ICON) {
@@ -57,6 +54,10 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallba
                 card.resourceId?.let {
                     ivCardIcon.setImageResource(it)
                 }
+            }
+            else if(card.cardType == CardType.TEXT) {
+                tvCardContent.text = card.value
+                tvCardContent.setTextColor(ContextCompat.getColor(itemView.context,card.cardContentResourceId))
             }
         }
     }
