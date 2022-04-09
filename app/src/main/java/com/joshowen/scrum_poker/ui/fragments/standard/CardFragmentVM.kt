@@ -8,14 +8,17 @@ import com.joshowen.scrum_poker.types.enums.DeckType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
 
 interface CardFragmentVMInput {
     fun setCardType(deckType: DeckType)
+    fun clickCard()
 }
 
 interface CardFragmentVMOutput {
     fun getCardData(): Observable<List<CardData>>
+    fun cardClicked() : Observable<Unit>
 }
 
 @HiltViewModel
@@ -28,13 +31,14 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
     val inputs: CardFragmentVMInput = this
     val outputs: CardFragmentVMOutput = this
 
-    private val psCardType = BehaviorSubject.create<DeckType>()
+    private val bsCardType = BehaviorSubject.create<DeckType>()
+    private val psCardClicked = PublishSubject.create<Unit>()
 
     private val obsCardInformation: Observable<List<CardData>>
 
 
     init {
-        obsCardInformation = psCardType.flatMap { cardType ->
+        obsCardInformation = bsCardType.flatMap { cardType ->
             Observable.create { emitter ->
 
                 val output: List<CardData> = when (cardType) {
@@ -135,13 +139,22 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
 
     //region Inputs
     override fun setCardType(deckType: DeckType) {
-        psCardType.onNext(deckType)
+        bsCardType.onNext(deckType)
     }
+
+    override fun clickCard() {
+        psCardClicked.onNext(Unit)
+    }
+
     //endregion
 
     //region Output
     override fun getCardData(): Observable<List<CardData>> {
         return obsCardInformation
+    }
+
+    override fun cardClicked(): Observable<Unit> {
+        return psCardClicked
     }
     //endregion
 }

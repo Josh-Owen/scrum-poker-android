@@ -11,12 +11,14 @@ import com.joshowen.scrum_poker.databinding.ItemCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 
-class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallback())  {
+class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
+    ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallback()) {
 
     //region Recycler View Overrides
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {
-        val view : ItemCardBinding = ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return CardViewHolder(view)
+        val view: ItemCardBinding =
+            ItemCardBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CardViewHolder(view, onClickCard)
     }
 
     override fun onBindViewHolder(holder: CardViewHolder, position: Int) {
@@ -38,28 +40,47 @@ class CardAdapter : ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallba
     //endregion
 
     //region ViewHolders
-    class CardViewHolder(binding : ItemCardBinding) : RecyclerView.ViewHolder(binding.root) {
+    class CardViewHolder(binding: ItemCardBinding, val onClickCard: (cardData: CardData) -> Unit) :
+        RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
+        //region Variables
         private val tvCardContent = binding.tvCardValue
         private val cvContainer = binding.cvContainer
         private val ivCardIcon = binding.ivCardIcon
 
+        private var card: CardData? = null
+        //endregion
+
+        //region Bind
         fun bind(card: CardData) {
 
+            this.card = card
+            cvContainer.setOnClickListener(this)
             cvContainer.setCardBackgroundColor(ContextCompat.getColor(itemView.context, card.backgroundColourResourceId))
 
-            if(card.cardType == CardType.ICON) {
-                ivCardIcon.visibility = if(card.resourceId != null) View.VISIBLE else View.GONE
-                ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+            if (card.cardType == CardType.ICON) {
+                tvCardContent.visibility = View.GONE
                 card.resourceId?.let {
                     ivCardIcon.setImageResource(it)
+                    ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+                    ivCardIcon.visibility = View.VISIBLE
                 }
-            }
-            else if(card.cardType == CardType.TEXT) {
+            } else if (card.cardType == CardType.TEXT) {
+                ivCardIcon.visibility = View.GONE
                 tvCardContent.text = card.value
-                tvCardContent.setTextColor(ContextCompat.getColor(itemView.context,card.cardContentResourceId))
+                tvCardContent.setTextColor(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+                tvCardContent.visibility = View.VISIBLE
             }
         }
+        //endregion
+
+        //region View.OnClickListener
+        override fun onClick(view: View) {
+            card?.let {
+                onClickCard(it)
+            }
+        }
+        //endregion
     }
 
     //endregion
