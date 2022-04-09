@@ -86,9 +86,9 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
         if(card.cardType == CardType.ICON) {
             binding.incSelectedCard.tvCardValue.visibility = View.GONE
-            binding.incSelectedCard.ivCardIcon.setColorFilter(ContextCompat.getColor( requireContext(), card.cardContentResourceId))
             card.resourceId?.let {
                 binding.incSelectedCard.ivCardIcon.setImageResource(it)
+                binding.incSelectedCard.ivCardIcon.setColorFilter(ContextCompat.getColor( requireContext(), card.cardContentResourceId))
             }
             binding.incSelectedCard.ivCardIcon.visibility =  View.VISIBLE
         }
@@ -98,7 +98,6 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
             binding.incSelectedCard.tvCardValue.text = card.value
             binding.incSelectedCard.tvCardValue.visibility = View.VISIBLE
         }
-
         binding.incSelectedCard.root.visibility = View.VISIBLE
     }
     //endregion
