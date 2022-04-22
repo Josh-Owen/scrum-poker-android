@@ -50,11 +50,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:textColor="@color/card_item_text_colour"
-                android:textSize="@dimen/card_item_text_size_large"
                 android:autoSizeTextType="uniform"
                 android:textStyle="bold"
-                tools:text="1"
-                tools:targetApi="o" />
+                tools:text="1" />
 
             <ImageView
                 android:id="@+id/ivCardIcon"
