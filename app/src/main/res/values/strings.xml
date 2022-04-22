@@ -5,5 +5,20 @@
     <string name="menu_fibonacci">Fibonacci</string>
     <string name="menu_hours">Hours</string>
     <string name="menu_risk">Risk</string>
+
+    <string name="create_lobby_page_title">Create Lobby</string>
+
     <string name="menu_online_collaboration">Online Collaboration</string>
+    <string name="online_home_join_lobby">Join Lobby</string>
+    <string name="online_home_create_lobby">Create Lobby</string>
+    <string name="online_home_lobby_instructions">Enter Lobby Code</string>
+    <string name="online_home_create_lobby_title">Create your own lobby</string>
+    <string name="create_lobby_title">Lobby Code</string>
+    <string name="create_lobby_number_of_users">There are %s users\nwaiting in the lobby</string>
+    <string name="create_lobby_start">Start</string>
+    <string name="create_lobby_select_deck_instructions">Select Deck Type</string>
+    <string name="create_lobby_select_deck_title">Deck Type</string>
+    <string name="create_lobby_select_deck_type">Click heer to select a deck type</string>
+    <string name="create_lobby_deck_type_placeholder">Click here to select your deck type</string>
+    <string name="online_home_lobby_nickname_title">Enter Nickname</string>
 </resources>

@@ -14,10 +14,11 @@ import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
 import com.joshowen.scrum_poker.utils.RxExtensions.Companion.onClick
+import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-
+@AndroidEntryPoint
 class CardFragment : BaseFragment<FragmentCardBinding>() {
 
     //region Variables

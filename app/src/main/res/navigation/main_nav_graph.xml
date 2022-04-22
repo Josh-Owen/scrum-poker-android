@@ -49,4 +49,26 @@
             android:defaultValue="RISK" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/nav_online"
+        tools:layout="@layout/fragment_online_home"
+        android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.onlinehome.OnlineHomeFragment"
+        android:label="@string/menu_online_collaboration" >
+
+        <action
+            android:id="@+id/action_HomeFragment_to_allArticlesFragment"
+            app:destination="@id/nav_create_lobby" />
+
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/nav_create_lobby"
+        android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby.CreateLobbyFragment"
+        android:label="@string/create_lobby_page_title"
+        tools:layout="@layout/fragment_create_lobby" />
+
+
 </navigation>

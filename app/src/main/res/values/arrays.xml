@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="deck_type">
+        <item>@string/menu_standard</item>
+        <item>@string/menu_fibonacci</item>
+        <item>@string/menu_hours</item>
+        <item>@string/menu_risk</item>
+    </string-array>
+
+</resources>

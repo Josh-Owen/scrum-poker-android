@@ -11,13 +11,15 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseActivity
 import com.joshowen.scrum_poker.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Variables
 
     private val appBarConfiguration: AppBarConfiguration by lazy {
-        AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk), binding.drawerLayout)
+        AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk, R.id.nav_online), binding.drawerLayout)
     }
 
     //endregion
