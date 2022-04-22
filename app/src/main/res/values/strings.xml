@@ -21,4 +21,9 @@
     <string name="create_lobby_select_deck_title">Deck Type</string>
     <string name="create_lobby_deck_type_placeholder">Select your deck type</string>
     <string name="online_home_lobby_nickname_title">Enter Nickname</string>
+
+    <string name="alert_select_deck_title">Select Deck</string>
+    <string name="dialog_cancel_lobby_body">Are you sure you want to cancel your lobby?</string>
+    <string name="dialog_cancel_lobby_button_positive">Yes</string>
+    <string name="dialog_cancel_lobby_button_negative">No</string>
 </resources>

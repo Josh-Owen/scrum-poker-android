@@ -7,9 +7,11 @@ import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCreateLobbyBinding
+import com.joshowen.scrum_poker.types.enums.DeckType
 import com.joshowen.scrum_poker.utils.RxExtensions.Companion.onClick
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -44,21 +46,27 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-            AlertDialog.Builder(requireContext())
-                .setTitle("Select title")
-                .setItems(
-                    R.array.deck_type
-                ) { _, i ->
-                    binding.tvDeckType.text = resources.getStringArray(R.array.deck_type)[i]
-                }.create()
-                .show()
-        }.autoDispose()
+                viewModel.inputs.selectDeckTypeClick()
+            }.autoDispose()
         //endregion
 
         //region Outputs
         viewModel.outputs.onBackPressed().subscribe {
             createAreYouSureDialog()
         }.autoDispose()
+
+        viewModel.outputs.selectDeckTypeClicked().subscribe {
+            AlertDialog.Builder(requireContext())
+                .setTitle(resources.getString(R.string.alert_select_deck_title))
+                .setItems(R.array.deck_type) { _, i ->
+                    viewModel.inputs.selectDeck(DeckType.values()[i])
+                }.create().show()
+        }.autoDispose()
+
+        viewModel.outputs.selectedDeck().subscribe { selectedDeckType ->
+            binding.tvDeckType.text = resources.getString(selectedDeckType.resourceId)
+        }.autoDispose()
+
         //endregion
     }
 
@@ -81,11 +89,12 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
 
     private fun createAreYouSureDialog() {
         AlertDialog.Builder(requireContext())
-            .setTitle("Are you sure you want to cancel your lobby?")
-            .setPositiveButton("Yes") { _, i -> }
-            .setNegativeButton("No") {_, i -> }
-            .create()
-            .show()
+            .setTitle(resources.getString(R.string.dialog_cancel_lobby_body))
+            .setPositiveButton(resources.getString(R.string.dialog_cancel_lobby_button_positive)) { _, _ ->
+                findNavController().popBackStack()
+            }
+            .setNegativeButton(resources.getString(R.string.dialog_cancel_lobby_button_negative)) {_, _ -> }
+            .create().show()
     }
 
     //region Options Menu
