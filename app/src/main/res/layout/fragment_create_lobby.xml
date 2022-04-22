@@ -13,7 +13,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:hint="@string/create_lobby_select_deck_type"
+            android:hint="@string/create_lobby_deck_type_placeholder"
             android:text="@string/create_lobby_select_deck_title"
             android:textSize="24sp"
             android:textStyle="bold"

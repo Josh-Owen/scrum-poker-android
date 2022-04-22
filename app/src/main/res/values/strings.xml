@@ -5,6 +5,7 @@
     <string name="menu_fibonacci">Fibonacci</string>
     <string name="menu_hours">Hours</string>
     <string name="menu_risk">Risk</string>
+    <string name="menu_settings">Settings</string>
 
     <string name="create_lobby_page_title">Create Lobby</string>
 
@@ -18,7 +19,6 @@
     <string name="create_lobby_start">Start</string>
     <string name="create_lobby_select_deck_instructions">Select Deck Type</string>
     <string name="create_lobby_select_deck_title">Deck Type</string>
-    <string name="create_lobby_select_deck_type">Click heer to select a deck type</string>
-    <string name="create_lobby_deck_type_placeholder">Click here to select your deck type</string>
+    <string name="create_lobby_deck_type_placeholder">Select your deck type</string>
     <string name="online_home_lobby_nickname_title">Enter Nickname</string>
 </resources>

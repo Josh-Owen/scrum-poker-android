@@ -69,6 +69,11 @@
         android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby.CreateLobbyFragment"
         android:label="@string/create_lobby_page_title"
         tools:layout="@layout/fragment_create_lobby" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.joshowen.scrum_poker.ui.fragments.settings.SettingsFragment"
+        tools:layout="@layout/fragment_settings"
+        android:label="@string/menu_settings" />
 
 
 </navigation>

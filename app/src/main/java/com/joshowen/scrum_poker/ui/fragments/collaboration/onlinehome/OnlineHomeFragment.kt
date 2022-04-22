@@ -1,6 +1,7 @@
 package com.joshowen.scrum_poker.ui.fragments.collaboration.onlinehome
 
 import android.view.LayoutInflater
+import android.view.Menu
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.joshowen.scrum_poker.R
@@ -22,6 +23,12 @@ class OnlineHomeFragment : BaseFragment<FragmentOnlineHomeBinding>() {
         return FragmentOnlineHomeBinding.inflate(layoutInflater)
     }
 
+    override fun initViews() {
+        super.initViews()
+        setHasOptionsMenu(true)
+
+    }
+
     override fun observeViewModel() {
         //region Inputs
         binding.btnCreateLobby.onClick().subscribe {
@@ -38,13 +45,12 @@ class OnlineHomeFragment : BaseFragment<FragmentOnlineHomeBinding>() {
 
         //endregion
     }
+    //endregion
 
-    override fun initViews() {
-        super.initViews()
-
-
-
+    //region Options Menu
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_settings).isVisible = false
+        super.onPrepareOptionsMenu(menu)
     }
-
     //endregion
 }

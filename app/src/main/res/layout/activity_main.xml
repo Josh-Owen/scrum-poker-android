@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
+                app:menu="@menu/settings_menu"
                 app:popupTheme="@style/Theme.Scrumpoker.PopupOverlay" />
 
         </com.google.android.material.appbar.AppBarLayout>

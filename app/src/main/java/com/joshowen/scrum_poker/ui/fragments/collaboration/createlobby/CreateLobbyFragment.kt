@@ -2,6 +2,7 @@ package com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby
 
 import android.app.AlertDialog
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
@@ -27,6 +28,8 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
 
     override fun initViews() {
         super.initViews()
+        setHasOptionsMenu(true)
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             viewModel.inputs.onBackPress()
         }
@@ -85,5 +88,10 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             .show()
     }
 
-
+    //region Options Menu
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_settings).isVisible = false
+        super.onPrepareOptionsMenu(menu)
+    }
+    //endregion
 }
