@@ -7,12 +7,36 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
-            android:id="@+id/tvDeckTypeTitle"
-            android:gravity="center"
+            android:id="@+id/tvNickNameTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/online_home_lobby_nickname_title"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/etNickName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/etNickName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/tvDeckTypeTitle"
+            app:layout_constraintEnd_toEndOf="@+id/btnStart"
+            app:layout_constraintStart_toStartOf="@+id/btnStart" />
+
+
+        <TextView
+            android:id="@+id/tvDeckTypeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:hint="@string/create_lobby_deck_type_placeholder"
             android:text="@string/create_lobby_select_deck_title"
             android:textSize="24sp"
@@ -24,7 +48,7 @@
         <TextView
             android:id="@+id/tvDeckType"
             android:hint="@string/create_lobby_deck_type_placeholder"
-            android:textSize="18sp"
+            android:textSize="24sp"
             android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,11 +89,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:textSize="20sp"
+            android:gravity="center"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvLobbyCode"
-            android:text="@string/create_lobby_number_of_users" />
+            android:text="@string/create_lobby_number_of_users_single" />
 
         <Button
             android:id="@+id/btnStart"

@@ -2,23 +2,29 @@ package com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby
 
 import com.joshowen.scrum_poker.base.BaseViewModel
 import com.joshowen.scrum_poker.types.enums.DeckType
+import com.joshowen.scrum_poker.utils.generateRandomString
+import com.joshowen.scrum_poker.utils.isValidUserName
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
-import java.util.*
 import javax.inject.Inject
 
 interface Inputs {
     fun onBackPress()
     fun selectDeckTypeClick()
     fun selectDeck(deckType: DeckType)
+    fun inputName(name : String)
 }
 
 interface Outputs {
     fun onBackPressed() : Observable<Unit>
     fun selectDeckTypeClicked() : Observable<Unit>
     fun selectedDeck() : Observable<DeckType>
+    fun getLobbyCode() : Observable<String>
+    fun getLobbyCount() : Observable<Int>
+    fun hasPassedValidation() : Observable<Boolean>
+    fun getName() : Observable<String>
 }
 
 @HiltViewModel
@@ -27,6 +33,12 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
     //region Variables
     private val psBackPressed = PublishSubject.create<Unit>()
     private val psDeckTypeClicked = PublishSubject.create<Unit>()
+    private val bsName = BehaviorSubject.createDefault("")
+
+    private val obsLobbyCode : Observable<String>
+    private val obsLobbyCount : Observable<Int>
+
+    private val hasPassedValidation : Observable<Boolean>
 
     private val bsSelectedDeckType = BehaviorSubject.createDefault(DeckType.STANDARD)
 
@@ -36,7 +48,9 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
     //endregion
 
     init {
-
+        obsLobbyCode = Observable.just(generateRandomString(6).uppercase())
+        obsLobbyCount = Observable.just(1)
+        hasPassedValidation = bsName.map { name -> name.isValidUserName() }
     }
 
     //region Inputs
@@ -52,6 +66,10 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
         bsSelectedDeckType.onNext(deckType)
     }
 
+    override fun inputName(name: String) {
+        bsName.onNext(name)
+    }
+
     //endregion
 
     //region Outputs
@@ -65,6 +83,22 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
 
     override fun selectedDeck(): Observable<DeckType> {
         return bsSelectedDeckType
+    }
+
+    override fun getLobbyCode(): Observable<String> {
+        return obsLobbyCode
+    }
+
+    override fun getLobbyCount(): Observable<Int> {
+        return obsLobbyCount
+    }
+
+    override fun hasPassedValidation(): Observable<Boolean> {
+        return hasPassedValidation
+    }
+
+    override fun getName(): Observable<String> {
+        return bsName
     }
 
     //endregion

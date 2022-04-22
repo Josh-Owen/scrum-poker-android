@@ -4,10 +4,10 @@ import android.app.AlertDialog
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.jakewharton.rxbinding4.widget.textChanges
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCreateLobbyBinding
@@ -22,7 +22,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
 
     //region Variables
-    private val viewModel : CreateLobbyFragmentVM by viewModels()
+    private val viewModel: CreateLobbyFragmentVM by viewModels()
 
     //endregion
 
@@ -48,11 +48,17 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             .subscribe {
                 viewModel.inputs.selectDeckTypeClick()
             }.autoDispose()
+
+        binding.etNickName.textChanges().subscribe {
+            //Todo: Replace this with a custom RX Extension
+            viewModel.inputs.inputName(it.toString())
+        }.autoDispose()
+
         //endregion
 
         //region Outputs
         viewModel.outputs.onBackPressed().subscribe {
-            createAreYouSureDialog()
+            displayCancelLobbyDialog()
         }.autoDispose()
 
         viewModel.outputs.selectDeckTypeClicked().subscribe {
@@ -67,6 +73,33 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             binding.tvDeckType.text = resources.getString(selectedDeckType.resourceId)
         }.autoDispose()
 
+        viewModel.outputs.getLobbyCode().subscribe {
+            binding.tvLobbyCode.text = it
+        }.autoDispose()
+
+        viewModel.outputs.getLobbyCount().subscribe { userCount ->
+            binding.tvUsersInLobby.text = if (userCount == 1) String.format(
+                resources.getString(R.string.create_lobby_number_of_users_single),
+                userCount
+            )
+            else
+                String.format(
+                    resources.getString(R.string.create_lobby_number_of_users_multiple),
+                    userCount
+                )
+        }.autoDispose()
+
+        viewModel.outputs.hasPassedValidation().subscribe {
+            binding.btnStart.isEnabled = it
+        }.autoDispose()
+
+        viewModel.getName().subscribe {
+            //Todo: Replace this with custom RX function
+            if (it.toString() != binding.etNickName.text.toString()) {
+                binding.etNickName.setText(it)
+            }
+        }.autoDispose()
+
         //endregion
     }
 
@@ -77,6 +110,12 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
 
     //endregion
 
+    //region Options Menu
+    override fun onPrepareOptionsMenu(menu: Menu) {
+        menu.findItem(R.id.menu_settings).isVisible = false
+        super.onPrepareOptionsMenu(menu)
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
@@ -86,21 +125,17 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+    //endregion
 
-    private fun createAreYouSureDialog() {
+    //region AlertDialogs
+    private fun displayCancelLobbyDialog() {
         AlertDialog.Builder(requireContext())
             .setTitle(resources.getString(R.string.dialog_cancel_lobby_body))
             .setPositiveButton(resources.getString(R.string.dialog_cancel_lobby_button_positive)) { _, _ ->
                 findNavController().popBackStack()
             }
-            .setNegativeButton(resources.getString(R.string.dialog_cancel_lobby_button_negative)) {_, _ -> }
+            .setNegativeButton(resources.getString(R.string.dialog_cancel_lobby_button_negative)) { _, _ -> }
             .create().show()
-    }
-
-    //region Options Menu
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        menu.findItem(R.id.menu_settings).isVisible = false
-        super.onPrepareOptionsMenu(menu)
     }
     //endregion
 }

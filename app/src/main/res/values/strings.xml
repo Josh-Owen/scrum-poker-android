@@ -12,15 +12,16 @@
     <string name="menu_online_collaboration">Online Collaboration</string>
     <string name="online_home_join_lobby">Join Lobby</string>
     <string name="online_home_create_lobby">Create Lobby</string>
-    <string name="online_home_lobby_instructions">Enter Lobby Code</string>
+    <string name="online_home_lobby_instructions">Lobby Code</string>
     <string name="online_home_create_lobby_title">Create your own lobby</string>
     <string name="create_lobby_title">Lobby Code</string>
-    <string name="create_lobby_number_of_users">There are %s users\nwaiting in the lobby</string>
+    <string name="create_lobby_number_of_users_single">There is %s user\nwaiting in the lobby</string>
+    <string name="create_lobby_number_of_users_multiple">There are %s users\nwaiting in the lobby</string>
     <string name="create_lobby_start">Start</string>
     <string name="create_lobby_select_deck_instructions">Select Deck Type</string>
     <string name="create_lobby_select_deck_title">Deck Type</string>
     <string name="create_lobby_deck_type_placeholder">Select your deck type</string>
-    <string name="online_home_lobby_nickname_title">Enter Nickname</string>
+    <string name="online_home_lobby_nickname_title">Name</string>
 
     <string name="alert_select_deck_title">Select Deck</string>
     <string name="dialog_cancel_lobby_body">Are you sure you want to cancel your lobby?</string>
