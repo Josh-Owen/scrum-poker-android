@@ -68,7 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         return when (item.itemId) {
             R.id.menu_settings -> {
                 val navController = findNavController(R.id.nav_host_fragment_content_main)
-                navController.navigate(R.id.settingsFragment)
+                navController.navigate(R.id.nav_settings)
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -25,6 +25,10 @@
 
     <string name="alert_select_deck_title">Select Deck</string>
     <string name="dialog_cancel_lobby_body">Are you sure you want to cancel your lobby?</string>
+    <string name="dialog_exit_lobby_body">Are you sure you want to leave your lobby?</string>
     <string name="dialog_cancel_lobby_button_positive">Yes</string>
     <string name="dialog_cancel_lobby_button_negative">No</string>
+    <string name="fragment_collaboration_task_placeholder">Input your question</string>
+    <string name="fragment_collaboration_submit_question">Submit</string>
+    <string name="fragment_collaboration_waiting">Waiting for question...</string>
 </resources>

@@ -15,6 +15,7 @@ interface Inputs {
     fun selectDeckTypeClick()
     fun selectDeck(deckType: DeckType)
     fun inputName(name : String)
+    fun createLobbyClick()
 }
 
 interface Outputs {
@@ -25,6 +26,7 @@ interface Outputs {
     fun getLobbyCount() : Observable<Int>
     fun hasPassedValidation() : Observable<Boolean>
     fun getName() : Observable<String>
+    fun createLobbyClicked() : Observable<Unit>
 }
 
 @HiltViewModel
@@ -33,6 +35,9 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
     //region Variables
     private val psBackPressed = PublishSubject.create<Unit>()
     private val psDeckTypeClicked = PublishSubject.create<Unit>()
+
+    private val psCreateLobbyClick = PublishSubject.create<Unit>()
+
     private val bsName = BehaviorSubject.createDefault("")
 
     private val obsLobbyCode : Observable<String>
@@ -70,6 +75,10 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
         bsName.onNext(name)
     }
 
+    override fun createLobbyClick() {
+        psCreateLobbyClick.onNext(Unit)
+    }
+
     //endregion
 
     //region Outputs
@@ -99,6 +108,10 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
 
     override fun getName(): Observable<String> {
         return bsName
+    }
+
+    override fun createLobbyClicked(): Observable<Unit> {
+        return psCreateLobbyClick
     }
 
     //endregion

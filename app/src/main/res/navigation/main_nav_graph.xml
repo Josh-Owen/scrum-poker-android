@@ -57,9 +57,11 @@
         android:label="@string/menu_online_collaboration" >
 
         <action
-            android:id="@+id/action_HomeFragment_to_allArticlesFragment"
+            android:id="@+id/action_Online_to_createLobby"
             app:destination="@id/nav_create_lobby" />
-
+        <action
+            android:id="@+id/action_Online_to_collaboration"
+            app:destination="@id/nav_collaboration" />
 
     </fragment>
 
@@ -68,12 +70,23 @@
         android:id="@+id/nav_create_lobby"
         android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby.CreateLobbyFragment"
         android:label="@string/create_lobby_page_title"
-        tools:layout="@layout/fragment_create_lobby" />
+        tools:layout="@layout/fragment_create_lobby" >
+
+        <action
+            android:id="@+id/action_lobby_to_collaboration"
+            app:destination="@id/nav_collaboration" />
+
+    </fragment>
     <fragment
-        android:id="@+id/settingsFragment"
+        android:id="@+id/nav_settings"
         android:name="com.joshowen.scrum_poker.ui.fragments.settings.SettingsFragment"
         tools:layout="@layout/fragment_settings"
         android:label="@string/menu_settings" />
+    <fragment
+        android:id="@+id/nav_collaboration"
+        tools:layout="@layout/fragment_collaboration"
+        android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.collaboration.CollaborationFragment"
+        android:label="@string/menu_online_collaboration" />
 
 
 </navigation>

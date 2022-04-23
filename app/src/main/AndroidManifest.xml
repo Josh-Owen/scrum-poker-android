@@ -9,6 +9,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:windowSoftInputMode="stateHidden|adjustResize"
         android:theme="@style/Theme.Scrumpoker">
         <activity
             android:name=".ui.activities.MainActivity"

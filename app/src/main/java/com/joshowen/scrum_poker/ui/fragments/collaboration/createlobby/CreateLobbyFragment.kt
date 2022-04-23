@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.activity.addCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.jakewharton.rxbinding4.view.clicks
 import com.jakewharton.rxbinding4.widget.textChanges
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseFragment
@@ -23,6 +24,7 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
 
     //region Variables
     private val viewModel: CreateLobbyFragmentVM by viewModels()
+
 
     //endregion
 
@@ -52,6 +54,10 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
         binding.etNickName.textChanges().subscribe {
             //Todo: Replace this with a custom RX Extension
             viewModel.inputs.inputName(it.toString())
+        }.autoDispose()
+
+        binding.btnStart.clicks().subscribe {
+            viewModel.inputs.createLobbyClick()
         }.autoDispose()
 
         //endregion
@@ -98,6 +104,10 @@ class CreateLobbyFragment : BaseFragment<FragmentCreateLobbyBinding>() {
             if (it.toString() != binding.etNickName.text.toString()) {
                 binding.etNickName.setText(it)
             }
+        }.autoDispose()
+
+        viewModel.outputs.createLobbyClicked().subscribe {
+            findNavController().navigate(R.id.action_lobby_to_collaboration)
         }.autoDispose()
 
         //endregion
