@@ -5,6 +5,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs'
     id 'dagger.hilt.android.plugin'
+
 }
 
 android {
@@ -12,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.joshowen.scrum_poker"
-        minSdk 21
+        minSdk 22
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -45,7 +46,8 @@ android {
 
 dependencies {
 
-    implementation(":firestorerepository")
+    // Modules
+    implementation project(":firestorerepository")
 
     // Android
     implementation 'androidx.databinding:databinding-compiler-common:7.1.3'
@@ -55,17 +57,24 @@ dependencies {
     // Firebase
     implementation platform('com.google.firebase:firebase-bom:29.2.1')
     implementation 'com.google.firebase:firebase-analytics-ktx'
-    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta05'
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta06'
+
+    // Countdown
+    implementation 'com.github.gusakovgiorgi:PulseCountDownView:9b8b82011a'
+
+    // Colour Picker
+    implementation 'com.github.Dhaval2404:ColorPicker:2.3'
 
     // RxJava
     implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
     implementation 'com.jakewharton.rxbinding4:rxbinding:4.0.0'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.0.3'
     // Dependency Injection - Hilt
     implementation("com.google.dagger:hilt-android:2.38.1")
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.preference:preference:1.1.1'
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
     // Core Android
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'

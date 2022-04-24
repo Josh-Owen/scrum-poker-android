@@ -65,7 +65,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(
                             cardType = CardType.ICON,
                             backgroundColourResourceId = R.color.black,
-                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            resourceId = R.drawable.ic_coffee_mug,
                             cardContentResourceId = R.color.teal_200
                         ),
                     )
@@ -87,7 +87,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(
                             cardType = CardType.ICON,
                             backgroundColourResourceId = R.color.black,
-                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            resourceId = R.drawable.ic_coffee_mug,
                             cardContentResourceId = R.color.teal_200
                         ),
                     )
@@ -109,7 +109,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(
                             cardType = CardType.ICON,
                             backgroundColourResourceId = R.color.black,
-                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            resourceId = R.drawable.ic_coffee_mug,
                             cardContentResourceId = R.color.teal_200
                         ),
                     )
@@ -124,7 +124,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(
                             cardType = CardType.ICON,
                             backgroundColourResourceId = R.color.black,
-                            resourceId = R.drawable.ic_baseline_color_lens_24,
+                            resourceId = R.drawable.ic_coffee_mug,
                             cardContentResourceId = R.color.teal_200
                         ),
                     )

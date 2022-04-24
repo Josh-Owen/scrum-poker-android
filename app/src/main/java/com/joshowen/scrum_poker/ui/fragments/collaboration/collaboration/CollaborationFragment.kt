@@ -101,7 +101,7 @@ class CollaborationFragment : BaseFragment<FragmentCollaborationBinding>() {
 
     //region Adapter Callbacks
     private fun onClickCard(card : CardData) {
-
+        card.value
 
     }
 

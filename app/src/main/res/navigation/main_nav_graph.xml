@@ -76,6 +76,10 @@
             android:id="@+id/action_lobby_to_collaboration"
             app:destination="@id/nav_collaboration" />
 
+        <action
+            android:id="@+id/action_lobby_to_waiting_room"
+            app:destination="@+id/nav_waiting_room"/>
+
     </fragment>
     <fragment
         android:id="@+id/nav_settings"
@@ -88,5 +92,14 @@
         android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.collaboration.CollaborationFragment"
         android:label="@string/menu_online_collaboration" />
 
+    <fragment
+        android:id="@+id/nav_waiting_room"
+        tools:layout="@layout/fragment_waiting_room"
+        android:name="com.joshowen.scrum_poker.ui.fragments.collaboration.waitingroom.WaitingRoomFragment"
+        android:label="@string/menu_waiting_room" >
+        <argument
+            android:name="lobbyCode"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

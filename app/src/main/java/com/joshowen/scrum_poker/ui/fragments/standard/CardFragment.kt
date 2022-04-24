@@ -13,7 +13,7 @@ import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
-import com.joshowen.scrum_poker.utils.RxExtensions.Companion.onClick
+import com.joshowen.scrum_poker.utils.onClick
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers

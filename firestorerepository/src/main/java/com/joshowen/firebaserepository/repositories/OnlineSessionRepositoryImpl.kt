@@ -1,5 +1,9 @@
 package com.joshowen.firebaserepository.repositories
 
-class OnlineSessionRepositoryImpl : OnlineSessionRepository {
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+class OnlineSessionRepositoryImpl @Inject constructor() : OnlineSessionRepository {
 
 }

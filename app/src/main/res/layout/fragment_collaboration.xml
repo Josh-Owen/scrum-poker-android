@@ -69,5 +69,18 @@
             app:layout_constraintEnd_toEndOf="@+id/etTask"
             app:layout_constraintStart_toStartOf="@+id/etTask" />
 
+        <com.gusakov.library.PulseCountDown
+            android:id="@+id/tvQuestionTimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="5"
+            android:textColor="@color/black"
+            android:textSize="100sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:pc_startValue="5" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

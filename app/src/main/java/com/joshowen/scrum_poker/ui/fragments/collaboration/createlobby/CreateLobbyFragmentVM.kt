@@ -1,5 +1,6 @@
 package com.joshowen.scrum_poker.ui.fragments.collaboration.createlobby
 
+import com.joshowen.firebaserepository.repositories.LobbyRepositoryImpl
 import com.joshowen.scrum_poker.base.BaseViewModel
 import com.joshowen.scrum_poker.types.enums.DeckType
 import com.joshowen.scrum_poker.utils.generateRandomString
@@ -30,7 +31,7 @@ interface Outputs {
 }
 
 @HiltViewModel
-class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outputs {
+class CreateLobbyFragmentVM @Inject constructor(val lobbyRepository: LobbyRepositoryImpl): BaseViewModel(), Inputs, Outputs {
 
     //region Variables
     private val psBackPressed = PublishSubject.create<Unit>()
@@ -54,7 +55,7 @@ class CreateLobbyFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outp
 
     init {
         obsLobbyCode = Observable.just(generateRandomString(6).uppercase())
-        obsLobbyCount = Observable.just(1)
+        obsLobbyCount = lobbyRepository.getLobbyMemberCount()
         hasPassedValidation = bsName.map { name -> name.isValidUserName() }
     }
 
