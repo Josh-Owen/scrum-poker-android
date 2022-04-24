@@ -31,6 +31,7 @@ class OnlineHomeFragment : BaseFragment<FragmentOnlineHomeBinding>() {
     }
 
     override fun observeViewModel() {
+
         //region Inputs
         binding.btnCreateLobby.onClick().subscribe {
             viewModel.inputs.clickCreateLobby()
@@ -71,6 +72,7 @@ class OnlineHomeFragment : BaseFragment<FragmentOnlineHomeBinding>() {
             binding.btnJoinLobby.isEnabled = it
         }.autoDispose()
         //endregion
+
     }
     //endregion
 
@@ -80,4 +82,5 @@ class OnlineHomeFragment : BaseFragment<FragmentOnlineHomeBinding>() {
         super.onPrepareOptionsMenu(menu)
     }
     //endregion
+
 }

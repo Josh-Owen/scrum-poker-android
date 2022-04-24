@@ -129,7 +129,7 @@ class CollaborationFragment : BaseFragment<FragmentCollaborationBinding>() {
         AlertDialog.Builder(requireContext())
             .setTitle(resources.getString(R.string.dialog_exit_lobby_body))
             .setPositiveButton(resources.getString(R.string.dialog_cancel_lobby_button_positive)) { _, _ ->
-                findNavController().popBackStack()
+                findNavController().popBackStack(R.id.nav_online, false)
             }
             .setNegativeButton(resources.getString(R.string.dialog_cancel_lobby_button_negative)) { _, _ -> }
             .create().show()

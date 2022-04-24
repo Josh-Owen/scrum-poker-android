@@ -45,10 +45,17 @@ android {
 
 dependencies {
 
+    implementation(":firestorerepository")
+
     // Android
     implementation 'androidx.databinding:databinding-compiler-common:7.1.3'
     implementation("androidx.activity:activity-ktx:1.4.0")
     implementation("androidx.fragment:fragment-ktx:1.4.1")
+
+    // Firebase
+    implementation platform('com.google.firebase:firebase-bom:29.2.1')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
+    implementation 'com.google.firebase:firebase-appcheck-safetynet:16.0.0-beta05'
 
     // RxJava
     implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'

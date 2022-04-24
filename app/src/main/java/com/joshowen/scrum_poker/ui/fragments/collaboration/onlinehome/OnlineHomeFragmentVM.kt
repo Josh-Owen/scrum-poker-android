@@ -45,7 +45,6 @@ class OnlineHomeFragmentVM @Inject constructor(): BaseViewModel(), Inputs, Outpu
         }.map { (userName, lobbyCode) ->
             (userName.isValidUserName() && lobbyCode.isValidLobbyCode())
         }
-           // .map { it.isValidUserName() && }
     }
 
     //region Inputs
