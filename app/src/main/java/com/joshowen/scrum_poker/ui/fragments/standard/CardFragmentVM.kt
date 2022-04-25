@@ -44,14 +44,10 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                 val output: List<CardData> = when (cardType) {
                     DeckType.STANDARD -> listOf(
                         CardData(
-                            CardType.TEXT, "0",
-                            backgroundColourResourceId = R.color.black
+                            CardType.TEXT, "0"
                         ),
                         CardData(CardType.TEXT, "1/2"),
-                        CardData(
-                            CardType.TEXT, "1",
-                            cardContentResourceId = R.color.teal_200
-                        ),
+                        CardData(CardType.TEXT, "1"),
                         CardData(CardType.TEXT, "2"),
                         CardData(CardType.TEXT, "3"),
                         CardData(CardType.TEXT, "5"),
@@ -64,9 +60,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "?"),
                         CardData(
                             cardType = CardType.ICON,
-                            backgroundColourResourceId = R.color.black,
-                            resourceId = R.drawable.ic_coffee_mug,
-                            cardContentResourceId = R.color.teal_200
+                            resourceId = R.drawable.ic_coffee_mug
                         ),
                     )
                     DeckType.FIBONACCI -> listOf(
@@ -86,9 +80,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "?"),
                         CardData(
                             cardType = CardType.ICON,
-                            backgroundColourResourceId = R.color.black,
                             resourceId = R.drawable.ic_coffee_mug,
-                            cardContentResourceId = R.color.teal_200
                         ),
                     )
                     DeckType.HOURS -> listOf(
@@ -108,24 +100,20 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), CardFragmentVMInpu
                         CardData(CardType.TEXT, "?"),
                         CardData(
                             cardType = CardType.ICON,
-                            backgroundColourResourceId = R.color.black,
                             resourceId = R.drawable.ic_coffee_mug,
-                            cardContentResourceId = R.color.teal_200
                         ),
                     )
                     DeckType.RISK -> listOf(
-                        CardData(CardType.TEXT, "G"),
-                        CardData(CardType.TEXT, "B"),
-                        CardData(CardType.TEXT, "O"),
-                        CardData(CardType.TEXT, "P"),
-                        CardData(CardType.TEXT, "R"),
+                        CardData(CardType.COLOUR, backgroundColourResourceId = R.color.card_colour_green),
+                        CardData(CardType.COLOUR, backgroundColourResourceId = R.color.card_colour_brown),
+                        CardData(CardType.COLOUR, backgroundColourResourceId = R.color.card_colour_orange),
+                        CardData(CardType.COLOUR, backgroundColourResourceId = R.color.card_colour_purple),
+                        CardData(CardType.COLOUR, backgroundColourResourceId = R.color.card_colour_red),
                         CardData(CardType.TEXT, "∞"),
                         CardData(CardType.TEXT, "?"),
                         CardData(
                             cardType = CardType.ICON,
-                            backgroundColourResourceId = R.color.black,
                             resourceId = R.drawable.ic_coffee_mug,
-                            cardContentResourceId = R.color.teal_200
                         ),
                     )
                     else -> listOf()

@@ -58,18 +58,25 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
             cvContainer.setOnClickListener(this)
             cvContainer.setCardBackgroundColor(ContextCompat.getColor(itemView.context, card.backgroundColourResourceId))
 
-            if (card.cardType == CardType.ICON) {
-                tvCardContent.visibility = View.GONE
-                card.resourceId?.let {
-                    ivCardIcon.setImageResource(it)
-                    ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
-                    ivCardIcon.visibility = View.VISIBLE
+            when(card.cardType) {
+                CardType.ICON -> {
+                    tvCardContent.visibility = View.GONE
+                    card.resourceId?.let {
+                        ivCardIcon.setImageResource(it)
+                        ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+                        ivCardIcon.visibility = View.VISIBLE
+                    }
                 }
-            } else if (card.cardType == CardType.TEXT) {
-                ivCardIcon.visibility = View.GONE
-                tvCardContent.text = card.value
-                tvCardContent.setTextColor(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
-                tvCardContent.visibility = View.VISIBLE
+                CardType.TEXT -> {
+                    ivCardIcon.visibility = View.GONE
+                    tvCardContent.text = card.value
+                    tvCardContent.setTextColor(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
+                    tvCardContent.visibility = View.VISIBLE
+                }
+                CardType.COLOUR -> {
+                    ivCardIcon.visibility = View.GONE
+                    tvCardContent.visibility = View.GONE
+                }
             }
         }
         //endregion

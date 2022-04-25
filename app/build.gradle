@@ -63,7 +63,7 @@ dependencies {
     implementation 'com.github.gusakovgiorgi:PulseCountDownView:9b8b82011a'
 
     // Colour Picker
-    implementation 'com.github.Dhaval2404:ColorPicker:2.3'
+    implementation 'com.github.7Koston:HSVColorPicker:1.1.5'
 
     // RxJava
     implementation 'com.jakewharton.rxbinding4:rxbinding-core:4.0.0'
@@ -74,7 +74,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.38.1")
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
-    implementation 'androidx.preference:preference:1.1.1'
+    implementation 'androidx.preference:preference-ktx:1.2.0'
     kapt("com.google.dagger:hilt-android-compiler:2.38.1")
     // Core Android
     implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'

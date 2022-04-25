@@ -1,13 +1,16 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
 import android.animation.ObjectAnimator
+import android.app.backup.SharedPreferencesBackupHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
+import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
@@ -49,6 +52,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
     }
 
     override fun observeViewModel() {
+
 
         //region Inputs
         viewModel.inputs.setCardType(deckType)
@@ -92,19 +96,25 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         //region Card Initialisation
         binding.cvContainer.setCardBackgroundColor(ContextCompat.getColor(requireContext(), card.backgroundColourResourceId))
 
-        if(card.cardType == CardType.ICON) {
-            binding.tvCardValue.visibility = View.GONE
-            card.resourceId?.let {
-                binding.ivCardIcon.setImageResource(it)
-                binding.ivCardIcon.setColorFilter(ContextCompat.getColor( requireContext(), card.cardContentResourceId))
+        when(card.cardType) {
+            CardType.ICON -> {
+                binding.tvCardValue.visibility = View.GONE
+                card.resourceId?.let {
+                    binding.ivCardIcon.setImageResource(it)
+                    binding.ivCardIcon.setColorFilter(ContextCompat.getColor( requireContext(), card.cardContentResourceId))
+                }
+                binding.ivCardIcon.visibility =  View.VISIBLE
             }
-            binding.ivCardIcon.visibility =  View.VISIBLE
-        }
-        else if(card.cardType == CardType.TEXT) {
-            binding.ivCardIcon.visibility = View.GONE
-            binding.tvCardValue.setTextColor(ContextCompat.getColor(requireContext(), card.cardContentResourceId))
-            binding.tvCardValue.text = card.value
-            binding.tvCardValue.visibility = View.VISIBLE
+            CardType.TEXT -> {
+                binding.ivCardIcon.visibility = View.GONE
+                binding.tvCardValue.setTextColor(ContextCompat.getColor(requireContext(), card.cardContentResourceId))
+                binding.tvCardValue.text = card.value
+                binding.tvCardValue.visibility = View.VISIBLE
+            }
+            CardType.COLOUR -> {
+                binding.ivCardIcon.visibility = View.GONE
+                binding.tvCardValue.visibility = View.GONE
+            }
         }
         //endregion
     }

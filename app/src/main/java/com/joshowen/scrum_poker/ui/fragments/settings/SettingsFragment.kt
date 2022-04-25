@@ -1,53 +1,50 @@
 package com.joshowen.scrum_poker.ui.fragments.settings
 
-import android.view.LayoutInflater
+import android.content.Intent
+import android.os.Bundle
 import android.view.Menu
-import androidx.core.view.iterator
-import androidx.fragment.app.viewModels
+import androidx.preference.SwitchPreference
+import com.github.koston.preference.ColorPreferenceFragmentCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.joshowen.scrum_poker.R
-import com.joshowen.scrum_poker.base.BaseFragment
-import com.joshowen.scrum_poker.databinding.FragmentSettingsBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 
-@AndroidEntryPoint
-class SettingsFragment : BaseFragment<FragmentSettingsBinding>() {
+class SettingsFragment : ColorPreferenceFragmentCompat() {
 
-    //region Variables
-    private val viewModel : SettingsFragmentVM by viewModels()
-
-    //endregion
-
-    //region BaseFragment Overrides
-
-    override fun initViews() {
-        super.initViews()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setHasOptionsMenu(true)
     }
 
-    override fun observeViewModel() {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-        //region Inputs
 
-        //endregion
+        val themeMode: SwitchPreference? = findPreference(resources.getString(R.string.pref_dark_mode_key))
+        themeMode?.setOnPreferenceChangeListener { _, _ ->
+            MaterialAlertDialogBuilder(requireContext()).setMessage(
+               R.string.settings_switch_theme_warning_body
+            ).setPositiveButton(
+               R.string.settings_switch_theme_warning_positive
+            ) { _, _: Int ->
+                val intent: Intent? = requireContext().packageManager.getLaunchIntentForPackage(requireContext().applicationContext.packageName)
+                intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                startActivity(intent)
+            }.setNegativeButton(
+               R.string.settings_switch_theme_warning_negative
+            ) { _, _: Int ->
+                themeMode.isChecked = !themeMode.isChecked
+            }
+                .setOnCancelListener { themeMode.isChecked = !themeMode.isChecked }
+                .setTitle(R.string.settings_switch_theme_warning_title).show()
+            true
+        }
 
-        //region Outputs
-
-        //endregion
     }
 
-
-    override fun inflateBinding(layoutInflater: LayoutInflater): FragmentSettingsBinding {
-        return FragmentSettingsBinding.inflate(layoutInflater)
-    }
-
-    //endregion
-
-    //region Options Menu
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.menu_settings).isVisible = false
         super.onPrepareOptionsMenu(menu)
     }
 
-    //endregion
 }

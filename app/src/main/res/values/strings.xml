@@ -47,4 +47,26 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="settings_colour_options_header">Colour Options</string>
+
+    <!-- Keys -->
+    <string name="pref_background_key">BACKGROUND</string>
+    <string name="pref_card_background_key">CARD_BACKGROUND</string>
+    <string name="pref_card_border_key">CARD_BORDER</string>
+    <string name="pref_custom_theme_key">CUSTOM_THEME</string>
+    <string name="pref_card_content_colour_key">CARD_CONTENT</string>
+    <string name="pref_dark_mode_key">DARK_MODE</string>
+    <string name="pref_advertisements_enabled_key">ADVERTISEMENTS_ENABLED</string>
+
+    <string name="settings_advertisements_title">Advertisements Enabled</string>
+    <string name="settings_dark_theme_title">Dark Theme</string>
+    <string name="settings_custom_theme_title">Custom Theme</string>
+    <string name="settings_card_content_title">Card Content Colour</string>
+    <string name="settings_card_background_title">Card Background Colour</string>
+    <string name="settings_page_content_title">Background Colour</string>
+
+    <string name="settings_switch_theme_warning_title">Warning</string>
+    <string name="settings_switch_theme_warning_body">This change requires the application to be restarted, are you sure you want to restart?</string>
+    <string name="settings_switch_theme_warning_positive">Yes</string>
+    <string name="settings_switch_theme_warning_negative">No</string>
 </resources>

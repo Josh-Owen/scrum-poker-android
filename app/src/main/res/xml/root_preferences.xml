@@ -1,0 +1,88 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="@string/settings_colour_options_header">
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="true"
+            android:key="@string/pref_dark_mode_key"
+            android:title="@string/settings_dark_theme_title" />
+
+
+        <androidx.preference.SwitchPreference
+            android:defaultValue="false"
+            android:key="@string/pref_custom_theme_key"
+            android:title="@string/settings_custom_theme_title" />
+
+        <com.github.koston.preference.ColorPreference
+            style="themes/AppTheme.PreferenceDialog"
+            app:dependency="@string/pref_custom_theme_key"
+            android:defaultValue="@color/purple_700"
+            android:key="@string/pref_background_key"
+            android:title="@string/settings_page_content_title"
+            app:hueWheelRadius="@dimen/defaultWheelRadius"
+            app:hueWheelThickness="@dimen/defaultWheelThickness"
+            app:centerCircleRadius="@dimen/defaultCenterRadius"
+            app:centerCircleHaloRadius="@dimen/defaultCenterHaloRadius"
+            app:huePointerRadius="@dimen/defaultPointerRadius"
+            app:huePointerHaloRadius="@dimen/defaultPointerHaloRadius"
+            app:barThickness="@dimen/defaultBarThickness"
+            app:barLength="@dimen/defaultBarLength"
+            app:barPointerRadius="@dimen/defaultBarPointerRadius"
+            app:barPointerHaloRadius="@dimen/defaultBarPointerHaloRadius"
+            app:pointersHaloColor="@color/defaultPointerHaloColor"
+            app:indicatorColorPreview="true"/>
+
+        <com.github.koston.preference.ColorPreference
+            style="themes/AppTheme.PreferenceDialog"
+            android:defaultValue="@color/purple_700"
+            app:dependency="@string/pref_custom_theme_key"
+            android:key="@string/pref_card_background_key"
+            android:title="@string/settings_card_background_title"
+            app:hueWheelRadius="@dimen/defaultWheelRadius"
+            app:hueWheelThickness="@dimen/defaultWheelThickness"
+            app:centerCircleRadius="@dimen/defaultCenterRadius"
+            app:centerCircleHaloRadius="@dimen/defaultCenterHaloRadius"
+            app:huePointerRadius="@dimen/defaultPointerRadius"
+            app:huePointerHaloRadius="@dimen/defaultPointerHaloRadius"
+            app:barThickness="@dimen/defaultBarThickness"
+            app:barLength="@dimen/defaultBarLength"
+            app:barPointerRadius="@dimen/defaultBarPointerRadius"
+            app:barPointerHaloRadius="@dimen/defaultBarPointerHaloRadius"
+            app:pointersHaloColor="@color/defaultPointerHaloColor"
+            app:indicatorColorPreview="true"/>
+
+        <com.github.koston.preference.ColorPreference
+            style="themes/AppTheme.PreferenceDialog"
+            android:defaultValue="@color/purple_700"
+            app:dependency="@string/pref_custom_theme_key"
+            android:key="@string/pref_card_content_colour_key"
+            android:title="@string/settings_card_content_title"
+            app:hueWheelRadius="@dimen/defaultWheelRadius"
+            app:hueWheelThickness="@dimen/defaultWheelThickness"
+            app:centerCircleRadius="@dimen/defaultCenterRadius"
+            app:centerCircleHaloRadius="@dimen/defaultCenterHaloRadius"
+            app:huePointerRadius="@dimen/defaultPointerRadius"
+            app:huePointerHaloRadius="@dimen/defaultPointerHaloRadius"
+            app:barThickness="@dimen/defaultBarThickness"
+            app:barLength="@dimen/defaultBarLength"
+            app:barPointerRadius="@dimen/defaultBarPointerRadius"
+            app:barPointerHaloRadius="@dimen/defaultBarPointerHaloRadius"
+            app:pointersHaloColor="@color/defaultPointerHaloColor"
+            app:indicatorColorPreview="true"/>
+
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="@string/settings_advertisements_title">
+
+        <SwitchPreferenceCompat
+            app:key="@string/pref_advertisements_enabled_key"
+            app:title="@string/settings_advertisements_title"
+            android:defaultValue="false"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
