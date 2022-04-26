@@ -18,7 +18,7 @@
         <com.github.koston.preference.ColorPreference
             style="themes/AppTheme.PreferenceDialog"
             app:dependency="@string/pref_custom_theme_key"
-            android:defaultValue="@color/purple_700"
+            android:defaultValue="@color/card_page_background_colour_default"
             android:key="@string/pref_background_key"
             android:title="@string/settings_page_content_title"
             app:hueWheelRadius="@dimen/defaultWheelRadius"
@@ -36,7 +36,7 @@
 
         <com.github.koston.preference.ColorPreference
             style="themes/AppTheme.PreferenceDialog"
-            android:defaultValue="@color/purple_700"
+            android:defaultValue="@color/card_item_background_default"
             app:dependency="@string/pref_custom_theme_key"
             android:key="@string/pref_card_background_key"
             android:title="@string/settings_card_background_title"
@@ -55,7 +55,7 @@
 
         <com.github.koston.preference.ColorPreference
             style="themes/AppTheme.PreferenceDialog"
-            android:defaultValue="@color/purple_700"
+            app:defaultValue="@color/card_item_content_colour_default"
             app:dependency="@string/pref_custom_theme_key"
             android:key="@string/pref_card_content_colour_key"
             android:title="@string/settings_card_content_title"

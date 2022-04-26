@@ -27,6 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
+            android:maxLines="1"
             app:layout_constraintBottom_toTopOf="@+id/tvDeckTypeTitle"
             app:layout_constraintEnd_toEndOf="@+id/btnStart"
             app:layout_constraintStart_toStartOf="@+id/btnStart" />

@@ -12,8 +12,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="card_item_background">@color/purple_700</color>
-    <color name="card_item_text_colour">@color/white</color>
+    <color name="card_item_background_default">@color/purple_700</color>
+    <color name="card_item_content_colour_default">@color/white</color>
+    <color name="card_page_background_colour_default">@color/black</color>
 
     <color name="card_colour_green">#286301</color>
     <color name="card_colour_brown">#362d00</color>

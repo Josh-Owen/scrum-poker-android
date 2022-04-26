@@ -17,7 +17,7 @@ class SettingsFragment : ColorPreferenceFragmentCompat() {
     }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
-        setPreferencesFromResource(R.xml.root_preferences, rootKey)
+        setPreferencesFromResource(R.xml.fragment_settings, rootKey)
 
 
         val themeMode: SwitchPreference? = findPreference(resources.getString(R.string.pref_dark_mode_key))

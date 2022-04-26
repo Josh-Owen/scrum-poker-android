@@ -13,10 +13,6 @@ fun View.onClick(): Observable<Unit> {
     }
 }
 
-/**
- * Emits the last value on the current stream when [toListen] emits a new item
- * @return [Observable] of [T]
- */
 fun <T, O1> Observable<T>.takeWhen(toListen: Observable<O1>): Observable<T> {
     return toListen.withLatestFrom(this) { _, T1 -> T1 }
 }

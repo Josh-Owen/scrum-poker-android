@@ -60,7 +60,7 @@
 
     <string name="settings_advertisements_title">Advertisements Enabled</string>
     <string name="settings_dark_theme_title">Dark Theme</string>
-    <string name="settings_custom_theme_title">Custom Theme</string>
+    <string name="settings_custom_theme_title">Custom Card Theme</string>
     <string name="settings_card_content_title">Card Content Colour</string>
     <string name="settings_card_background_title">Card Background Colour</string>
     <string name="settings_page_content_title">Background Colour</string>

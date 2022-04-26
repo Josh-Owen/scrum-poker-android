@@ -1,21 +1,18 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
-import android.animation.ObjectAnimator
-import android.app.backup.SharedPreferencesBackupHelper
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.GridLayoutManager
-import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
+import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardBackgroundColour
+import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardContentColour
+import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardPageBackgroundColour
 import com.joshowen.scrum_poker.utils.onClick
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -44,6 +41,10 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
     override fun initViews() {
         super.initViews()
+
+        getCardPageBackgroundColour(requireContext(), resources)?.let {
+            binding.mlParent.setBackgroundColor(it)
+        }
 
         binding.rvCards.apply {
             layoutManager = GridLayoutManager(requireContext(), 3)
@@ -94,20 +95,27 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         //endregion
 
         //region Card Initialisation
-        binding.cvContainer.setCardBackgroundColor(ContextCompat.getColor(requireContext(), card.backgroundColourResourceId))
+
+        getCardContentColour(requireContext(), resources)?.let {
+            binding.ivCardIcon.setColorFilter(it)
+            binding.tvCardValue.setTextColor(it)
+        }
+
+        getCardBackgroundColour(requireContext(), resources)?.let {
+            binding.cvContainer.setCardBackgroundColor(it)
+        }
+
 
         when(card.cardType) {
             CardType.ICON -> {
                 binding.tvCardValue.visibility = View.GONE
                 card.resourceId?.let {
                     binding.ivCardIcon.setImageResource(it)
-                    binding.ivCardIcon.setColorFilter(ContextCompat.getColor( requireContext(), card.cardContentResourceId))
                 }
                 binding.ivCardIcon.visibility =  View.VISIBLE
             }
             CardType.TEXT -> {
                 binding.ivCardIcon.visibility = View.GONE
-                binding.tvCardValue.setTextColor(ContextCompat.getColor(requireContext(), card.cardContentResourceId))
                 binding.tvCardValue.text = card.value
                 binding.tvCardValue.visibility = View.VISIBLE
             }
