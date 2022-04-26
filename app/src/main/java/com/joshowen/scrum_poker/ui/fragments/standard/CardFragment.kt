@@ -1,10 +1,15 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
+import android.R
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import androidx.annotation.NonNull
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
@@ -18,16 +23,17 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
+
 @AndroidEntryPoint
 class CardFragment : BaseFragment<FragmentCardBinding>() {
 
     //region Variables
 
-    private val viewModel : CardFragmentVM by viewModels()
+    private val viewModel: CardFragmentVM by viewModels()
 
-    lateinit var deckType : DeckType
+    lateinit var deckType: DeckType
 
-    private val cardAdapter : CardAdapter by lazy {
+    private val cardAdapter: CardAdapter by lazy {
         CardAdapter(::onClickCard)
     }
 
@@ -50,6 +56,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
             layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = cardAdapter
         }
+
     }
 
     override fun observeViewModel() {
@@ -58,9 +65,10 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         //region Inputs
         viewModel.inputs.setCardType(deckType)
 
-        binding.cvContainer.onClick().subscribe {
-            viewModel.inputs.clickCard()
-        }.autoDispose()
+        binding.cvContainer.onClick()
+            .subscribe {
+                viewModel.inputs.clickCard()
+            }.autoDispose()
 
         //endregion
 
@@ -73,9 +81,10 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
                 cardAdapter.submitList(it)
             }.autoDispose()
 
-        viewModel.outputs.cardClicked().subscribe {
-            binding.mlParent.transitionToStart()
-        }.autoDispose()
+        viewModel.outputs.cardClicked()
+            .subscribe {
+                binding.mlParent.transitionToStart()
+            }.autoDispose()
 
         //endregion
     }
@@ -88,9 +97,12 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
     //endregion
 
     //region Adapter Callbacks
-    private fun onClickCard(card : CardData) {
+    private fun onClickCard(card: CardData) {
 
         //region View Animation Logic
+
+        //   binding.mlParent.isClickable = false
+
         binding.mlParent.transitionToEnd()
         //endregion
 
@@ -101,18 +113,23 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
             binding.tvCardValue.setTextColor(it)
         }
 
-        getCardBackgroundColour(requireContext(), resources)?.let {
+
+        val cardBackgroundColour = if (card.cardType != CardType.COLOUR)
+            getCardBackgroundColour(requireContext(), resources)
+        else
+            ContextCompat.getColor(requireContext(), card.backgroundColourResourceId)
+
+        cardBackgroundColour?.let {
             binding.cvContainer.setCardBackgroundColor(it)
         }
 
-
-        when(card.cardType) {
+        when (card.cardType) {
             CardType.ICON -> {
                 binding.tvCardValue.visibility = View.GONE
                 card.resourceId?.let {
                     binding.ivCardIcon.setImageResource(it)
                 }
-                binding.ivCardIcon.visibility =  View.VISIBLE
+                binding.ivCardIcon.visibility = View.VISIBLE
             }
             CardType.TEXT -> {
                 binding.ivCardIcon.visibility = View.GONE

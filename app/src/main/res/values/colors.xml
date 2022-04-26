@@ -3,7 +3,14 @@
 
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#E52147</color>
+    <color name="colorAccent">@color/blood_orange</color>
+
+
+    <color name="royal_blue">#076176</color>
+    <color name="blue_two">#002129</color>
+    <color name="blood_orange">#e6381e</color>
+    <color name="burnt_brown">#771610</color>
+    <color name="bumblebee_yellow">#f8ab1b</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
@@ -12,7 +19,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="card_item_background_default">@color/purple_700</color>
+    <color name="card_item_background_default">@color/blood_orange</color>
     <color name="card_item_content_colour_default">@color/white</color>
     <color name="card_page_background_colour_default">@color/black</color>
 
