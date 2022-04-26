@@ -45,7 +45,7 @@ class PreferenceManagerWrapper {
                     ContextCompat.getColor(context, R.color.card_item_background_default)
                 )
             } else {
-                null
+                ContextCompat.getColor(context, R.color.card_item_background_default)
             }
         }
 
@@ -61,7 +61,7 @@ class PreferenceManagerWrapper {
                     ContextCompat.getColor(context, R.color.card_item_content_colour_default)
                 )
             } else {
-                null
+                ContextCompat.getColor(context, R.color.card_item_content_colour_default)
             }
         }
     }
