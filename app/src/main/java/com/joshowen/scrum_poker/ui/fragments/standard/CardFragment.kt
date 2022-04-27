@@ -1,14 +1,14 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
-import android.R
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.ItemTouchHelper.*
 import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCardBinding
@@ -44,6 +44,8 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
     override fun inflateBinding(layoutInflater: LayoutInflater): FragmentCardBinding {
         return FragmentCardBinding.inflate(layoutInflater)
     }
+
+
 
     override fun initViews() {
         super.initViews()
@@ -84,6 +86,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         viewModel.outputs.cardClicked()
             .subscribe {
                 binding.mlParent.transitionToStart()
+                Log.e("Test", "Test 1")
             }.autoDispose()
 
         //endregion
@@ -101,6 +104,8 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
         //region View Animation Logic
 
+        Log.e("Test", "Test 2")
+
         //   binding.mlParent.isClickable = false
 
         binding.mlParent.transitionToEnd()
@@ -108,7 +113,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
         //region Card Initialisation
 
-        getCardContentColour(requireContext(), resources)?.let {
+        getCardContentColour(requireContext(), resources).let {
             binding.ivCardIcon.setColorFilter(it)
             binding.tvCardValue.setTextColor(it)
         }
@@ -119,9 +124,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         else
             ContextCompat.getColor(requireContext(), card.backgroundColourResourceId)
 
-        cardBackgroundColour?.let {
-            binding.cvContainer.setCardBackgroundColor(it)
-        }
+            binding.cvContainer.setCardBackgroundColor(cardBackgroundColour)
 
         when (card.cardType) {
             CardType.ICON -> {

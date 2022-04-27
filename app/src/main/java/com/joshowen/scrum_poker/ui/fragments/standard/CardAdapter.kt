@@ -42,9 +42,7 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
     }
 
 
-
     //endregion
-
 
 
     //region ViewHolders
@@ -64,26 +62,32 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
 
             this.card = card
 
+            //itemView.drag
 
             tvCardContent.text = ""
             ivCardIcon.setImageDrawable(null)
 
-            PreferenceManagerWrapper.getCardContentColour(itemView.context, itemView.resources)?.let {
-                ivCardIcon.setColorFilter(it)
-                tvCardContent.setTextColor(it)
-            }
+
+
+            PreferenceManagerWrapper.getCardContentColour(itemView.context, itemView.resources)
+                .let {
+                    ivCardIcon.setColorFilter(it)
+                    tvCardContent.setTextColor(it)
+                }
 
 
             val cardBackgroundColour = if (card.cardType != CardType.COLOUR)
-                PreferenceManagerWrapper.getCardBackgroundColour(itemView.context, itemView.resources)
+                PreferenceManagerWrapper.getCardBackgroundColour(
+                    itemView.context,
+                    itemView.resources
+                )
             else
                 ContextCompat.getColor(itemView.context, card.backgroundColourResourceId)
 
-           cardBackgroundColour?.let {
-               cvContainer.setCardBackgroundColor(it)
-           }
+            cvContainer.setCardBackgroundColor(cardBackgroundColour)
 
-            when(card.cardType) {
+
+            when (card.cardType) {
                 CardType.ICON -> {
                     tvCardContent.visibility = View.GONE
                     card.resourceId?.let {
@@ -104,7 +108,6 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
             cvContainer.setOnClickListener(this)
         }
         //endregion
-
 
 
         //region View.OnClickListener
