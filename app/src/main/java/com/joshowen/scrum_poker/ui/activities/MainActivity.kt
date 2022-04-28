@@ -20,7 +20,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     //region Variables
 
     private val appBarConfiguration: AppBarConfiguration by lazy {
-        AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk, R.id.nav_online), binding.drawerLayout)
+        AppBarConfiguration(setOf(R.id.nav_standard, R.id.nav_fibonacci, R.id.nav_hours, R.id.nav_risk), binding.drawerLayout)
     }
 
     //endregion
@@ -45,19 +45,21 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Initialising-UI Features
     private fun initialiseDrawerLayout() {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.navHostContent)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
+        binding.nvPageContent.setupWithNavController(navController)
     }
 
     //endregion
 
     //region Navigation
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main)
+        val navController = findNavController(R.id.navHostContent)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+    //endregion
 
+    //region Options Menu
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater
         inflater.inflate(R.menu.settings_menu, menu)
@@ -67,13 +69,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_settings -> {
-                val navController = findNavController(R.id.nav_host_fragment_content_main)
+                val navController = findNavController(R.id.navHostContent)
                 navController.navigate(R.id.nav_settings)
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
     }
-
     //endregion
+
 }

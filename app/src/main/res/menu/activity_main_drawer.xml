@@ -4,22 +4,22 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_standard"
-            android:title="@string/menu_standard" />
-        <item
-            android:id="@+id/nav_fibonacci"
-            android:title="@string/menu_fibonacci" />
-        <item
-            android:id="@+id/nav_hours"
-            android:title="@string/menu_hours" />
+        <item android:title="@string/menu_deck_types_title">
+            <menu>
+                <item
+                    android:id="@+id/nav_standard"
+                    android:title="@string/menu_standard" />
+                <item
+                    android:id="@+id/nav_fibonacci"
+                    android:title="@string/menu_fibonacci" />
+                <item
+                    android:id="@+id/nav_hours"
+                    android:title="@string/menu_hours" />
 
-        <item
-            android:id="@+id/nav_risk"
-            android:title="@string/menu_risk" />
-
-        <item
-            android:id="@+id/nav_online"
-            android:title="@string/menu_online_collaboration" />
+                <item
+                    android:id="@+id/nav_risk"
+                    android:title="@string/menu_risk" />
+            </menu>
+        </item>
     </group>
 </menu>

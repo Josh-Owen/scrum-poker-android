@@ -1,24 +1,20 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.*
-import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.base.BaseFragment
 import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
-import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardBackgroundColour
-import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardContentColour
-import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper.Companion.getCardPageBackgroundColour
-import com.joshowen.scrum_poker.utils.onClick
+import com.joshowen.scrum_poker.utils.extensions.onClick
+import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardBackgroundColour
+import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardContentColour
+import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardPageBackgroundColour
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -86,7 +82,6 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         viewModel.outputs.cardClicked()
             .subscribe {
                 binding.mlParent.transitionToStart()
-                Log.e("Test", "Test 1")
             }.autoDispose()
 
         //endregion
@@ -104,11 +99,8 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
         //region View Animation Logic
 
-        Log.e("Test", "Test 2")
-
-        //   binding.mlParent.isClickable = false
-
         binding.mlParent.transitionToEnd()
+
         //endregion
 
         //region Card Initialisation

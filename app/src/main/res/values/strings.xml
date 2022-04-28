@@ -1,55 +1,16 @@
 <resources>
     <string name="app_name">scrum-poker</string>
 
+    <!-- Menu Strings -->
+    <string name="menu_deck_types_title">Deck Types</string>
     <string name="menu_standard">Standard</string>
     <string name="menu_fibonacci">Fibonacci</string>
     <string name="menu_hours">Hours</string>
     <string name="menu_risk">Risk</string>
     <string name="menu_settings">Settings</string>
+    <!-- End of Menu Strings -->
 
-    <string name="create_lobby_page_title">Create Lobby</string>
-
-    <string name="menu_waiting_room">Waiting Room</string>
-    <string name="menu_online_collaboration">Online Collaboration</string>
-    <string name="online_home_join_lobby">Join Lobby</string>
-    <string name="online_home_create_lobby">Create Lobby</string>
-    <string name="online_home_lobby_instructions">Lobby Code</string>
-    <string name="online_home_create_lobby_title">Create your own lobby</string>
-    <string name="create_lobby_title">Lobby Code</string>
-    <string name="create_lobby_number_of_users_single">There is %s user\nwaiting in the lobby</string>
-    <string name="create_lobby_number_of_users_multiple">There are %s users\nwaiting in the lobby</string>
-    <string name="create_lobby_start">Start</string>
-    <string name="create_lobby_select_deck_instructions">Select Deck Type</string>
-    <string name="create_lobby_select_deck_title">Deck Type</string>
-    <string name="create_lobby_deck_type_placeholder">Select your deck type</string>
-    <string name="online_home_lobby_nickname_title">Name</string>
-
-    <string name="alert_select_deck_title">Select Deck</string>
-    <string name="dialog_cancel_lobby_body">Are you sure you want to cancel your lobby?</string>
-    <string name="dialog_exit_lobby_body">Are you sure you want to leave your lobby?</string>
-    <string name="dialog_cancel_lobby_button_positive">Yes</string>
-    <string name="dialog_cancel_lobby_button_negative">No</string>
-    <string name="fragment_collaboration_task_placeholder">Input your question</string>
-    <string name="fragment_collaboration_submit_question">Submit</string>
-    <string name="fragment_collaboration_waiting">Waiting for question…</string>
-    <string name="waiting_room_waiting">Waiting for host to start…</string>
-    <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
-
-    <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
-
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="settings_colour_options_header">Colour Options</string>
-
-    <!-- Keys -->
+    <!-- Key Strings -->
     <string name="pref_background_key">BACKGROUND</string>
     <string name="pref_card_background_key">CARD_BACKGROUND</string>
     <string name="pref_card_border_key">CARD_BORDER</string>
@@ -57,16 +18,24 @@
     <string name="pref_card_content_colour_key">CARD_CONTENT</string>
     <string name="pref_dark_mode_key">DARK_MODE</string>
     <string name="pref_advertisements_enabled_key">ADVERTISEMENTS_ENABLED</string>
+    <!-- End of Keys -->
 
+    <!-- Settings Strings -->
     <string name="settings_advertisements_title">Advertisements Enabled</string>
     <string name="settings_dark_theme_title">Dark Theme</string>
     <string name="settings_custom_theme_title">Custom Card Theme</string>
     <string name="settings_card_content_title">Card Content Colour</string>
     <string name="settings_card_background_title">Card Background Colour</string>
     <string name="settings_page_content_title">Background Colour</string>
-
+    <string name="settings_colour_options_header">Colour Options</string>
     <string name="settings_switch_theme_warning_title">Warning</string>
     <string name="settings_switch_theme_warning_body">This change requires the application to be restarted, are you sure you want to restart?</string>
     <string name="settings_switch_theme_warning_positive">Yes</string>
     <string name="settings_switch_theme_warning_negative">No</string>
+    <!-- End of Settings Strings -->
+
+    <!-- Content Descriptions -->
+    <string name="card_icon_description">Card Icon</string>
+    <!-- End of Content Descriptions -->
+
 </resources>

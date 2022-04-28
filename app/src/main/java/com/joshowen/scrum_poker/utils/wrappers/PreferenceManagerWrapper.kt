@@ -1,4 +1,4 @@
-package com.joshowen.scrum_poker.utils
+package com.joshowen.scrum_poker.utils.wrappers
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -20,8 +20,7 @@ class PreferenceManagerWrapper {
             val prefManager = getPreferenceManager(context)
             return if (prefManager.getBoolean(resources.getString(R.string.pref_custom_theme_key), false))
             {
-                val resId =
-                    prefManager.getInt(resources.getString(R.string.pref_background_key), -1)
+                val resId = prefManager.getInt(resources.getString(R.string.pref_background_key), -1)
                 if (resId != -1) {
                     resId
                 } else

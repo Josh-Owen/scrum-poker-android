@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <ConstraintSet android:id="@+id/start"/>
+
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/cvContainer"
+            android:layout_width="0dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            motion:layout_constraintBottom_toBottomOf="parent"
+            motion:layout_constraintEnd_toEndOf="parent"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+    </ConstraintSet>
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@id/start"
+        motion:duration="1000"
+        motion:motionInterpolator="linear">
+        <KeyFrameSet>
+
+            <KeyAttribute
+                android:rotationY="0"
+                motion:framePosition="0"
+                motion:motionTarget="@+id/rvCards" />
+            <KeyAttribute
+                android:rotationY="90"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/rvCards" />
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="100"
+                motion:motionTarget="@+id/rvCards" />
+
+            <KeyAttribute
+                android:alpha="0"
+                motion:framePosition="150"
+                motion:motionTarget="@+id/cvContainer" />
+
+            <KeyAttribute
+                android:rotationY="0"
+                motion:framePosition="1500"
+                motion:motionTarget="@+id/cvContainer" />
+
+
+        </KeyFrameSet>
+
+    </Transition>
+
+</MotionScene>

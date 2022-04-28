@@ -5,14 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.ItemTouchHelper.Callback.makeMovementFlags
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.databinding.ItemCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
-import com.joshowen.scrum_poker.utils.PreferenceManagerWrapper
+import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper
 
 
 class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
@@ -44,7 +42,6 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
 
     //endregion
 
-
     //region ViewHolders
     class CardViewHolder(binding: ItemCardBinding, val onClickCard: (cardData: CardData) -> Unit) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
@@ -61,8 +58,6 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         fun bind(card: CardData) {
 
             this.card = card
-
-            //itemView.drag
 
             tvCardContent.text = ""
             ivCardIcon.setImageDrawable(null)
@@ -109,7 +104,6 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         }
         //endregion
 
-
         //region View.OnClickListener
         override fun onClick(view: View) {
             card?.let {
@@ -118,6 +112,7 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         }
 
         //endregion
+
     }
 
     //endregion
