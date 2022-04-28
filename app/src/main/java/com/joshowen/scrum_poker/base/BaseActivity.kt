@@ -1,11 +1,16 @@
 package com.joshowen.scrum_poker.base
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.preference.PreferenceManager
 import androidx.viewbinding.ViewBinding
+import com.joshowen.scrum_poker.R
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
+
 
 abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
 
@@ -21,6 +26,17 @@ abstract class BaseActivity<Binding : ViewBinding> : AppCompatActivity() {
         binding = inflateBinding(layoutInflater)
         setContentView(binding.root)
         initViews()
+
+        val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(
+            applicationContext
+        )
+        val key = resources.getString(R.string.pref_dark_mode_key)
+        if (prefs.getBoolean(key, false)) {
+            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
+        } else {
+            delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_NO
+        }
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
     }
 
     override fun onDestroy() {

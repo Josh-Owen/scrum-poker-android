@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.databinding.ItemCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
+import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper
+
 
 class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
     ListAdapter<CardData, CardAdapter.CardViewHolder>(DiffCallback()) {
@@ -37,6 +39,7 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
             oldItem.value == newItem.value
     }
 
+
     //endregion
 
     //region ViewHolders
@@ -55,22 +58,49 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         fun bind(card: CardData) {
 
             this.card = card
-            cvContainer.setOnClickListener(this)
-            cvContainer.setCardBackgroundColor(ContextCompat.getColor(itemView.context, card.backgroundColourResourceId))
 
-            if (card.cardType == CardType.ICON) {
-                tvCardContent.visibility = View.GONE
-                card.resourceId?.let {
-                    ivCardIcon.setImageResource(it)
-                    ivCardIcon.setColorFilter(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
-                    ivCardIcon.visibility = View.VISIBLE
+            tvCardContent.text = ""
+            ivCardIcon.setImageDrawable(null)
+
+
+
+            PreferenceManagerWrapper.getCardContentColour(itemView.context, itemView.resources)
+                .let {
+                    ivCardIcon.setColorFilter(it)
+                    tvCardContent.setTextColor(it)
                 }
-            } else if (card.cardType == CardType.TEXT) {
-                ivCardIcon.visibility = View.GONE
-                tvCardContent.text = card.value
-                tvCardContent.setTextColor(ContextCompat.getColor(itemView.context, card.cardContentResourceId))
-                tvCardContent.visibility = View.VISIBLE
+
+
+            val cardBackgroundColour = if (card.cardType != CardType.COLOUR)
+                PreferenceManagerWrapper.getCardBackgroundColour(
+                    itemView.context,
+                    itemView.resources
+                )
+            else
+                ContextCompat.getColor(itemView.context, card.backgroundColourResourceId)
+
+            cvContainer.setCardBackgroundColor(cardBackgroundColour)
+
+
+            when (card.cardType) {
+                CardType.ICON -> {
+                    tvCardContent.visibility = View.GONE
+                    card.resourceId?.let {
+                        ivCardIcon.setImageResource(it)
+                        ivCardIcon.visibility = View.VISIBLE
+                    }
+                }
+                CardType.TEXT -> {
+                    ivCardIcon.visibility = View.GONE
+                    tvCardContent.text = card.value
+                    tvCardContent.visibility = View.VISIBLE
+                }
+                CardType.COLOUR -> {
+                    ivCardIcon.visibility = View.GONE
+                    tvCardContent.visibility = View.GONE
+                }
             }
+            cvContainer.setOnClickListener(this)
         }
         //endregion
 
@@ -80,7 +110,9 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
                 onClickCard(it)
             }
         }
+
         //endregion
+
     }
 
     //endregion
