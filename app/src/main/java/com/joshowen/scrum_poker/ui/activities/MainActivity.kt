@@ -14,8 +14,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseActivity
 import com.joshowen.scrum_poker.databinding.ActivityMainBinding
-import com.joshowen.scrum_poker.utils.extensions.loadAdvert
-import com.joshowen.scrum_poker.utils.extensions.unLoadAdvert
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -48,7 +46,12 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
 
     override fun observeViewModel() {
-
+        viewModel.outputs.loadAdvert()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                loadOrUnloadBannerAdvert(it)
+            }.autoDispose()
     }
 
     //endregion
