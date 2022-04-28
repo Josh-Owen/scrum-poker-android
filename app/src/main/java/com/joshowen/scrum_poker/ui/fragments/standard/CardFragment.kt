@@ -46,7 +46,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
     override fun initViews() {
         super.initViews()
 
-        getCardPageBackgroundColour(requireContext(), resources)?.let {
+        getCardPageBackgroundColour(requireContext())?.let {
             binding.mlParent.setBackgroundColor(it)
         }
 

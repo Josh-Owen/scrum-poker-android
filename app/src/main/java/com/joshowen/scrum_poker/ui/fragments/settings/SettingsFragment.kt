@@ -35,8 +35,7 @@ class SettingsFragment : ColorPreferenceFragmentCompat() {
                 R.string.settings_switch_theme_warning_negative
             ) { _, _: Int ->
                 themeMode.isChecked = !themeMode.isChecked
-            }
-                .setOnCancelListener { themeMode.isChecked = !themeMode.isChecked }
+            }.setOnCancelListener { themeMode.isChecked = !themeMode.isChecked }
                 .setTitle(R.string.settings_switch_theme_warning_title).show()
             true
         }
