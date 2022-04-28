@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.joshowen.scrum_poker.databinding.ItemCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
+import com.joshowen.scrum_poker.utils.extensions.hide
+import com.joshowen.scrum_poker.utils.extensions.show
 import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper
 
 
@@ -84,20 +86,20 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
 
             when (card.cardType) {
                 CardType.ICON -> {
-                    tvCardContent.visibility = View.GONE
+                    tvCardContent.hide()
                     card.resourceId?.let {
                         ivCardIcon.setImageResource(it)
-                        ivCardIcon.visibility = View.VISIBLE
+                        ivCardIcon.show()
                     }
                 }
                 CardType.TEXT -> {
-                    ivCardIcon.visibility = View.GONE
+                    ivCardIcon.hide()
                     tvCardContent.text = card.value
-                    tvCardContent.visibility = View.VISIBLE
+                    tvCardContent.show()
                 }
                 CardType.COLOUR -> {
-                    ivCardIcon.visibility = View.GONE
-                    tvCardContent.visibility = View.GONE
+                    ivCardIcon.hide()
+                    tvCardContent.hide()
                 }
             }
             cvContainer.setOnClickListener(this)

@@ -81,7 +81,7 @@
         <SwitchPreferenceCompat
             app:key="@string/pref_advertisements_enabled_key"
             app:title="@string/settings_advertisements_title"
-            android:defaultValue="false"/>
+            android:defaultValue="true"/>
 
     </PreferenceCategory>
 

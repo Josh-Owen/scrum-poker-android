@@ -11,10 +11,14 @@ import io.reactivex.rxjava3.disposables.Disposable
 
 abstract class BaseFragment<Binding : ViewBinding> : Fragment() {
 
+    //region Variables
     lateinit var binding: Binding
 
     private val compositeDisposable = CompositeDisposable()
 
+    //endregion
+
+    //region Fragment Life-Cycle Overrides
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -47,10 +51,15 @@ abstract class BaseFragment<Binding : ViewBinding> : Fragment() {
         super.onResume()
         observeViewModel()
     }
+    //endregion
 
+    //region RX
     fun Disposable.autoDispose() {
         compositeDisposable.add(this)
     }
+    //endregion
+
+    //region Core Abstract/Open functions To Override
 
     abstract fun inflateBinding(layoutInflater: LayoutInflater): Binding
 
@@ -59,5 +68,7 @@ abstract class BaseFragment<Binding : ViewBinding> : Fragment() {
     open fun initArgs(arguments: Bundle) {}
 
     open fun initViews() {}
+
+    //endregion
 }
 

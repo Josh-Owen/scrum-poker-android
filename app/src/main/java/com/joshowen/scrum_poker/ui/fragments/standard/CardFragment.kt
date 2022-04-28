@@ -1,6 +1,7 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -11,13 +12,14 @@ import com.joshowen.scrum_poker.databinding.FragmentCardBinding
 import com.joshowen.scrum_poker.types.datatypes.CardData
 import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
-import com.joshowen.scrum_poker.utils.extensions.onClick
+import com.joshowen.scrum_poker.utils.extensions.*
 import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardBackgroundColour
 import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardContentColour
 import com.joshowen.scrum_poker.utils.wrappers.PreferenceManagerWrapper.Companion.getCardPageBackgroundColour
 import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
+import java.util.concurrent.TimeUnit
 
 
 @AndroidEntryPoint
@@ -41,8 +43,6 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         return FragmentCardBinding.inflate(layoutInflater)
     }
 
-
-
     override fun initViews() {
         super.initViews()
 
@@ -54,16 +54,16 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
             layoutManager = GridLayoutManager(requireContext(), 3)
             adapter = cardAdapter
         }
-
     }
 
     override fun observeViewModel() {
-
 
         //region Inputs
         viewModel.inputs.setCardType(deckType)
 
         binding.cvContainer.onClick()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 viewModel.inputs.clickCard()
             }.autoDispose()
@@ -72,7 +72,7 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
 
         //region Outputs
 
-        viewModel.outputs.getCardData()
+        viewModel.outputs.getDeckOfCards()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
@@ -80,6 +80,8 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
             }.autoDispose()
 
         viewModel.outputs.cardClicked()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 binding.mlParent.transitionToStart()
             }.autoDispose()
@@ -116,24 +118,24 @@ class CardFragment : BaseFragment<FragmentCardBinding>() {
         else
             ContextCompat.getColor(requireContext(), card.backgroundColourResourceId)
 
-            binding.cvContainer.setCardBackgroundColor(cardBackgroundColour)
+        binding.cvContainer.setCardBackgroundColor(cardBackgroundColour)
 
         when (card.cardType) {
             CardType.ICON -> {
-                binding.tvCardValue.visibility = View.GONE
+                binding.tvCardValue.hide()
                 card.resourceId?.let {
                     binding.ivCardIcon.setImageResource(it)
                 }
-                binding.ivCardIcon.visibility = View.VISIBLE
+                binding.ivCardIcon.show()
             }
             CardType.TEXT -> {
-                binding.ivCardIcon.visibility = View.GONE
+                binding.ivCardIcon.hide()
                 binding.tvCardValue.text = card.value
-                binding.tvCardValue.visibility = View.VISIBLE
+                binding.tvCardValue.show()
             }
             CardType.COLOUR -> {
-                binding.ivCardIcon.visibility = View.GONE
-                binding.tvCardValue.visibility = View.GONE
+                binding.ivCardIcon.hide()
+                binding.tvCardValue.hide()
             }
         }
         //endregion

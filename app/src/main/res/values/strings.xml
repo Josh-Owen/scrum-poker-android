@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">scrum-poker</string>
+
+    <string name="app_name">Scrum Poker (Agile)</string>
 
     <!-- Menu Strings -->
     <string name="menu_deck_types_title">Deck Types</string>
@@ -10,7 +11,7 @@
     <string name="menu_settings">Settings</string>
     <!-- End of Menu Strings -->
 
-    <!-- Key Strings -->
+    <!-- Shared Preferences Key Strings -->
     <string name="pref_background_key">BACKGROUND</string>
     <string name="pref_card_background_key">CARD_BACKGROUND</string>
     <string name="pref_card_border_key">CARD_BORDER</string>
