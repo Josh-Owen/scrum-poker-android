@@ -45,7 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Initialising-UI Features
     private fun initialiseDrawerLayout() {
-        val navController = findNavController(R.id.navHostContent)
+        val navController = findNavController(R.id.navHostFragment)
         setupActionBarWithNavController(navController, appBarConfiguration)
         binding.nvPageContent.setupWithNavController(navController)
     }
@@ -54,7 +54,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     //region Navigation
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.navHostContent)
+        val navController = findNavController(R.id.navHostFragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
     //endregion
@@ -69,7 +69,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_settings -> {
-                val navController = findNavController(R.id.navHostContent)
+                val navController = findNavController(R.id.navHostFragment)
                 navController.navigate(R.id.nav_settings)
                 true
             }
