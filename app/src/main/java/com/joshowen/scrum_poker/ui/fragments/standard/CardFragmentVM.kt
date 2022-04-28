@@ -1,5 +1,6 @@
 package com.joshowen.scrum_poker.ui.fragments.standard
 
+import android.app.Application
 import com.joshowen.scrum_poker.R
 import com.joshowen.scrum_poker.base.BaseViewModel
 import com.joshowen.scrum_poker.types.datatypes.CardData
@@ -7,6 +8,7 @@ import com.joshowen.scrum_poker.types.enums.CardType
 import com.joshowen.scrum_poker.types.enums.DeckType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.rxjava3.core.Observable
+import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.PublishSubject
 import javax.inject.Inject
@@ -17,12 +19,12 @@ interface Input {
 }
 
 interface Output {
-    fun getCardData(): Observable<List<CardData>>
+    fun getDeckOfCards(): Observable<List<CardData>>
     fun cardClicked() : Observable<Unit>
 }
 
 @HiltViewModel
-class CardFragmentVM @Inject constructor() : BaseViewModel(), Input, Output {
+class CardFragmentVM @Inject constructor(application : Application) : BaseViewModel(application), Input, Output {
 
 
     //region Variables
@@ -131,7 +133,7 @@ class CardFragmentVM @Inject constructor() : BaseViewModel(), Input, Output {
     //endregion
 
     //region Output
-    override fun getCardData(): Observable<List<CardData>> {
+    override fun getDeckOfCards(): Observable<List<CardData>> {
         return obsCardInformation
     }
 

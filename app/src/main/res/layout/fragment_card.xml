@@ -26,9 +26,7 @@
             android:layout_width="0dp"
             android:layout_height="400dp"
             android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="48dp"
-            android:layout_marginBottom="32dp"
             android:foreground="?android:attr/selectableItemBackground"
             android:rotationY="-90"
             android:visibility="invisible"
@@ -66,6 +64,5 @@
                 android:visibility="gone" />
 
         </androidx.cardview.widget.CardView>
-
     </androidx.constraintlayout.motion.widget.MotionLayout>
 </layout>

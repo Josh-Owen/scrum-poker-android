@@ -1,11 +1,14 @@
 package com.joshowen.scrum_poker.utils.wrappers
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.res.ObbInfo
 import android.content.res.Resources
 import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
 import com.joshowen.scrum_poker.R
+import io.reactivex.rxjava3.core.Observable
 
 
 class PreferenceManagerWrapper {
@@ -14,6 +17,11 @@ class PreferenceManagerWrapper {
 
         private fun getPreferenceManager(context: Context): SharedPreferences {
             return PreferenceManager.getDefaultSharedPreferences(context)
+        }
+
+        fun getIsAdvertisementsEnabled(application: Application) : Observable<Boolean> {
+            return Observable.just(getPreferenceManager(application.applicationContext)
+                .getBoolean(application.applicationContext.resources.getString(R.string.pref_advertisements_enabled_key), false))
         }
 
         fun getCardPageBackgroundColour(context: Context, resources: Resources): Int? {

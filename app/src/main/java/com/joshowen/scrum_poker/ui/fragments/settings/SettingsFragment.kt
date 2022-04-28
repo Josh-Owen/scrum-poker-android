@@ -19,19 +19,20 @@ class SettingsFragment : ColorPreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.fragment_settings, rootKey)
 
-
-        val themeMode: SwitchPreference? = findPreference(resources.getString(R.string.pref_dark_mode_key))
+        val themeMode: SwitchPreference? =
+            findPreference(resources.getString(R.string.pref_dark_mode_key))
         themeMode?.setOnPreferenceChangeListener { _, _ ->
             MaterialAlertDialogBuilder(requireContext()).setMessage(
-               R.string.settings_switch_theme_warning_body
+                R.string.settings_switch_theme_warning_body
             ).setPositiveButton(
-               R.string.settings_switch_theme_warning_positive
+                R.string.settings_switch_theme_warning_positive
             ) { _, _: Int ->
-                val intent: Intent? = requireContext().packageManager.getLaunchIntentForPackage(requireContext().applicationContext.packageName)
+                val intent: Intent? =
+                    requireContext().packageManager.getLaunchIntentForPackage(requireContext().applicationContext.packageName)
                 intent?.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                 startActivity(intent)
             }.setNegativeButton(
-               R.string.settings_switch_theme_warning_negative
+                R.string.settings_switch_theme_warning_negative
             ) { _, _: Int ->
                 themeMode.isChecked = !themeMode.isChecked
             }
@@ -39,12 +40,10 @@ class SettingsFragment : ColorPreferenceFragmentCompat() {
                 .setTitle(R.string.settings_switch_theme_warning_title).show()
             true
         }
-
     }
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.menu_settings).isVisible = false
         super.onPrepareOptionsMenu(menu)
     }
-
 }

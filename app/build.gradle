@@ -63,6 +63,9 @@ dependencies {
     // Colour Picker
     implementation 'com.github.7Koston:HSVColorPicker:1.1.5'
 
+    // Admob
+    implementation 'com.google.android.gms:play-services-ads:20.6.0'
+
     // RxJava
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
     implementation 'io.reactivex.rxjava3:rxjava:3.0.3'
