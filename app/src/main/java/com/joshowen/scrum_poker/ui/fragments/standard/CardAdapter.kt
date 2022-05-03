@@ -29,6 +29,10 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         holder.bind(getItem(position))
     }
 
+    override fun submitList(list: List<CardData>?) {
+        super.submitList(list)
+    }
+
     //endregion
 
     //region Diff Callbacks
@@ -56,6 +60,8 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
         private var card: CardData? = null
         //endregion
 
+
+
         //region Bind
         fun bind(card: CardData) {
 
@@ -64,14 +70,11 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
             tvCardContent.text = ""
             ivCardIcon.setImageDrawable(null)
 
-
-
             PreferenceManagerWrapper.getCardContentColour(itemView.context, itemView.resources)
                 .let {
                     ivCardIcon.setColorFilter(it)
                     tvCardContent.setTextColor(it)
                 }
-
 
             val cardBackgroundColour = if (card.cardType != CardType.COLOUR)
                 PreferenceManagerWrapper.getCardBackgroundColour(
@@ -82,7 +85,6 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
                 ContextCompat.getColor(itemView.context, card.backgroundColourResourceId)
 
             cvContainer.setCardBackgroundColor(cardBackgroundColour)
-
 
             when (card.cardType) {
                 CardType.ICON -> {
@@ -112,9 +114,7 @@ class CardAdapter(private val onClickCard: (cardData: CardData) -> Unit) :
                 onClickCard(it)
             }
         }
-
         //endregion
-
     }
 
     //endregion

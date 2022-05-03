@@ -30,7 +30,7 @@ class PreferenceManagerWrapper {
                 )
         }
 
-        fun getIsDarkModeEnabled(context: Context, defaultValue : Boolean = true) : Boolean {
+        fun getIsDarkModeEnabled(context: Context, defaultValue : Boolean = false) : Boolean {
             return getPreferenceManager(context)
                 .getBoolean(
                     context.resources.getString(R.string.pref_dark_mode_key),
